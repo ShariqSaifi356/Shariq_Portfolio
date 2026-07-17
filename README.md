@@ -24,7 +24,7 @@ A premium, creative, and highly interactive single-page landing portfolio websit
 
 ## 🛠️ Technology Stack
 
-*   **Framework**: Angular 18 (Standalone Components, Signals state management)
+*   **Framework**: Angular 22 (Standalone Components, Signals state management)
 *   **Styling**: Tailwind CSS v4 (CSS-first engine)
 *   **Fonts**: Inter (UI Text) & JetBrains Mono (Monospaced elements)
 

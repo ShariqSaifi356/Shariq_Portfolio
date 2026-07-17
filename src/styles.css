@@ -1,0 +1,167 @@
+/* Global styles and design tokens using Tailwind CSS v4 */
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Custom HSL-adjusted color tokens */
+  --color-bg-dark: #0F172A;
+  --color-surface-dark: #1E293B;
+  --color-primary: #3B82F6;
+  --color-accent: #22C55E;
+  --color-text-dark: #F8FAFC;
+  --color-muted-dark: #94A3B8;
+
+  --color-bg-light: #F8FAFC;
+  --color-surface-light: #F1F5F9;
+  --color-text-light: #0F172A;
+  --color-muted-light: #64748B;
+
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2s linear infinite;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Base custom definitions */
+html, body {
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0F172A;
+}
+
+.light ::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-radius: 4px;
+  border: 1px solid #334155;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3B82F6;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Cursor glow elements */
+.cursor-glow-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(59, 130, 246, 0.08),
+    transparent 40%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.light .cursor-glow-bg {
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(59, 130, 246, 0.04),
+    transparent 40%
+  );
+}
+
+/* Glassmorphic Utilities */
+.glass {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.light .glass {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.glass-premium {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+
+.light .glass-premium {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Code Highlighting Syntaxes */
+.code-keyword { color: #F43F5E; } /* Red/Pink */
+.code-string { color: #10B981; } /* Emerald */
+.code-function { color: #3B82F6; } /* Blue */
+.code-class { color: #F59E0B; } /* Amber */
+.code-comment { color: #64748B; font-style: italic; } /* Slate */
+.code-number { color: #8B5CF6; } /* Purple */
+.code-annotation { color: #EC4899; } /* Pink */
+
+.light .code-keyword { color: #DC2626; }
+.light .code-string { color: #059669; }
+.light .code-function { color: #2563EB; }
+.light .code-class { color: #D97706; }
+.light .code-comment { color: #94A3B8; }
+.light .code-number { color: #7C3AED; }
+.light .code-annotation { color: #DB2777; }
+
+/* Custom utilities */
+.text-glow {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.border-glow {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
+}
+
+.active-nav-indicator {
+  position: relative;
+}
+.active-nav-indicator::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #3B82F6;
+  border-radius: 9999px;
+  box-shadow: 0 0 8px #3B82F6;
+}
+

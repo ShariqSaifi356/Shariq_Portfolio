@@ -1,0 +1,64 @@
+/* Header Component Styles - Light and Dark Theme Support */
+
+/* Light mode: Navigation text with proper contrast */
+.light nav button:not([class*="bg-primary"]):not([class*="border-primary"]) {
+  color: #475569;
+  transition: color 0.3s ease;
+}
+
+.light nav button:not([class*="bg-primary"]):not([class*="border-primary"]):hover {
+  color: #1e293b;
+}
+
+/* Light mode: Active navigation indicator with better contrast */
+.light .active-nav-indicator {
+  color: #3b82f6 !important;
+}
+
+/* Light mode: Inspector button styling */
+.light button[class*="text-slate-400"] {
+  color: #64748b;
+}
+
+.light button[class*="text-slate-500"] {
+  color: #64748b;
+}
+
+/* Light mode: Ensure glass effect maintains readability */
+.light header.glass {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* Muted text colors - custom properties */
+.text-muted-dark {
+  color: #94a3b8;
+}
+
+.text-muted-light {
+  color: #475569;
+}
+
+.dark .text-muted-dark {
+  color: #94a3b8;
+}
+
+.light .text-muted-light {
+  color: #475569;
+}
+
+/* Ensure header border has proper contrast */
+.light header {
+  border-color: #e2e8f0;
+}
+
+/* Heading text in light mode */
+.light h1,
+.light h2,
+.light h3 {
+  color: #0f172a;
+}
+
+/* Logo text in light mode */
+.light .text-\[#0F172A\] {
+  color: #0f172a;
+}

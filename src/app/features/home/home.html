@@ -1,36 +1,57 @@
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-28 pb-10 sm:pb-16 space-y-16 sm:space-y-36">
-
+<div
+  class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-28 pb-10 sm:pb-16 space-y-16 sm:space-y-36"
+>
   <!-- ==================== HERO SECTION ==================== -->
-  <section id="home" class="min-h-[80vh] flex flex-col justify-center items-center lg:grid lg:grid-cols-12 gap-8 sm:gap-12 pt-6 sm:pt-12">
+  <section
+    id="home"
+    class="min-h-[80vh] flex flex-col justify-center items-center lg:grid lg:grid-cols-12 gap-8 sm:gap-12 pt-6 sm:pt-12"
+  >
     <!-- Left Column: Intro text -->
     <div class="lg:col-span-6 space-y-6 sm:space-y-8 text-center lg:text-left">
-      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full glass border border-blue-500/20 text-xs font-mono text-primary animate-pulse-slow">
+      <div
+        class="inline-flex items-center space-x-2 px-3 py-1 rounded-full glass border border-blue-500/20 text-xs font-mono text-primary animate-pulse-slow"
+      >
         <span class="w-2 h-2 rounded-full bg-accent"></span>
         <span>Available for Automation Projects</span>
       </div>
-      
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight select-none">
-        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent text-glow">{{ personal.name }}</span>
-        <br>
-        <span class="text-xl sm:text-2xl lg:text-3xl text-slate-400 font-mono font-medium block mt-2">{{ personal.title }}</span>
+
+      <h1
+        class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight select-none"
+      >
+        Hi, I'm
+        <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent text-glow"
+          >{{ personal.name }}</span
+        >
+        <br />
+        <span
+          class="text-xl sm:text-2xl lg:text-3xl text-slate-400 font-mono font-medium block mt-2"
+          >{{ personal.title }}</span
+        >
       </h1>
 
-      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto lg:mx-0 font-sans leading-relaxed">
+      <p
+        class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto lg:mx-0 font-sans leading-relaxed"
+      >
         {{ personal.summary }}
       </p>
 
       <!-- Call to Actions -->
-      <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 font-sans">
-        <button 
+      <div
+        class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 font-sans"
+      >
+        <button
           (click)="scrollToSection('projects')"
           class="w-full sm:w-auto px-6 py-3 rounded-lg bg-primary hover:bg-blue-600 text-white font-medium shadow-lg shadow-blue-500/25 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer text-center"
         >
           View Projects
         </button>
-        <a 
+        <a
           href="Mohammad_Shariq_Saifi_Resume.pdf"
           download="Mohammad_Shariq_Saifi_Resume.pdf"
-          (click)="workspaceService.showSnackbar('Downloading Mohammad Shariq Saifi\'s Resume PDF...')"
+          (click)="
+            workspaceService.showSnackbar('Downloading Mohammad Shariq Saifi\'s Resume PDF...')
+          "
           class="w-full sm:w-auto px-6 py-3 rounded-lg glass border border-blue-500/20 text-primary hover:text-white hover:bg-primary/10 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer text-center inline-flex items-center justify-center font-medium"
         >
           Download Resume
@@ -44,27 +65,43 @@
     </div>
   </section>
 
-
   <!-- ==================== ABOUT ME SECTION ==================== -->
   <section id="about" class="scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary">&lt;</span>About Me<span class="text-primary">/&gt;</span>
+        <span class="text-primary"></span>About Me<span class="text-primary">/</span>
       </h2>
       <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
       <!-- Left Column: Technical highlights card -->
-      <div class="lg:col-span-4 rounded-xl glass-premium p-6 border border-blue-500/20 shadow-xl flex flex-col justify-between select-none">
+      <div
+        class="lg:col-span-4 rounded-xl glass-premium p-6 border border-blue-500/20 shadow-xl flex flex-col justify-between select-none"
+      >
         <div class="space-y-4">
-          <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
+          <div
+            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"
+              />
             </svg>
           </div>
           <div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">{{ personal.name }}</h3>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">
+              {{ personal.name }}
+            </h3>
             <p class="text-xs font-mono text-slate-400">Gurugram, India</p>
           </div>
         </div>
@@ -91,22 +128,53 @@
       </div>
 
       <!-- Right Column: Visual Bio description and Interests -->
-      <div class="lg:col-span-8 flex flex-col justify-between rounded-xl glass p-6 sm:p-8 border border-white/5 shadow-2xl">
+      <div
+        class="lg:col-span-8 flex flex-col justify-between rounded-xl glass p-6 sm:p-8 border border-white/5 shadow-2xl"
+      >
         <div class="space-y-4">
-          <h3 class="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">QA Automation Architect & Explorer</h3>
-          <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
-            I am a QA Automation Engineer dedicated to validating system behavior through code. I look at codebases through the lens of testing: checking boundary conditions, hunting edge cases, and building frameworks that developers trust.
+          <h3
+            class="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent"
+          >
+            QA Automation Architect & Explorer
+          </h3>
+          <p
+            class="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-sans"
+          >
+            I am a QA Automation Engineer dedicated to validating system behavior through code. I
+            look at codebases through the lens of testing: checking boundary conditions, hunting
+            edge cases, and building frameworks that developers trust.
           </p>
-          <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
-            Whether it's setting up parallel visual regressions in Playwright, automating mobile gestural sweeps in Appium, or creating contract suites for APIs, my focus remains on speed, reliability, and precision.
+          <p
+            class="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-sans"
+          >
+            Whether it's setting up parallel visual regressions in Playwright, automating mobile
+            gestural sweeps in Appium, or creating contract suites for APIs, my focus remains on
+            speed, reliability, and precision.
           </p>
         </div>
 
         <div class="mt-6 sm:mt-8">
-          <h4 class="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase mb-3 select-none">Interests & Tags</h4>
+          <h4
+            class="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase mb-3 select-none"
+          >
+            Interests & Tags
+          </h4>
           <div class="flex flex-wrap gap-2">
-            @for (interest of ['CI/CD Integration', 'Test Automation', 'Bug Hunting', 'Pipeline Velocity', 'Espresso', 'Synthwave Coding', 'Allure Visuals']; track interest) {
-              <span class="px-3 py-1.5 rounded-full text-xs font-medium font-mono glass border border-blue-500/10 text-primary hover:border-primary hover:text-white hover:shadow-[0_0_8px_#3B82F6] transition-all duration-300 cursor-default select-none">
+            @for (
+              interest of [
+                'CI/CD Integration',
+                'Test Automation',
+                'Bug Hunting',
+                'Pipeline Velocity',
+                'Espresso',
+                'Synthwave Coding',
+                'Allure Visuals',
+              ];
+              track interest
+            ) {
+              <span
+                class="px-3 py-1.5 rounded-full text-xs font-medium font-mono glass border border-blue-500/10 text-primary hover:border-primary hover:text-white hover:shadow-[0_0_8px_#3B82F6] transition-all duration-300 cursor-default select-none"
+              >
                 {{ interest }}
               </span>
             }
@@ -116,12 +184,11 @@
     </div>
   </section>
 
-
   <!-- ==================== EXPERIENCE SECTION ==================== -->
   <section id="experience" class="scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary">&lt;</span>Work History<span class="text-primary">/&gt;</span>
+        <span class="text-primary"></span>Work History<span class="text-primary">/</span>
       </h2>
       <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
     </div>
@@ -131,46 +198,86 @@
         @for (job of experiences(); track job.company; let idx = $index) {
           <div class="relative group">
             <!-- Timeline indicator node -->
-            <div 
+            <div
               (click)="toggleExperience(idx)"
               class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-slate-900 flex items-center justify-center cursor-pointer transition-all duration-300 border border-blue-500/30 group-hover:border-primary group-hover:shadow-[0_0_8px_#3B82F6] z-10"
-              [ngClass]="job.expanded ? 'bg-primary text-white scale-110 border-primary' : 'text-primary hover:scale-105'"
+              [ngClass]="
+                job.expanded
+                  ? 'bg-primary text-white scale-110 border-primary'
+                  : 'text-primary hover:scale-105'
+              "
             >
               @if (job.expanded) {
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3.5 h-3.5 sm:w-4 sm:h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="3"
+                  stroke="currentColor"
+                  class="w-3.5 h-3.5 sm:w-4 sm:h-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                  />
                 </svg>
               } @else {
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3.5 h-3.5 sm:w-4 sm:h-4">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="3"
+                  stroke="currentColor"
+                  class="w-3.5 h-3.5 sm:w-4 sm:h-4"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                  />
                 </svg>
               }
             </div>
 
             <!-- Main timeline card container -->
-            <div 
+            <div
               class="rounded-xl glass border p-5 sm:p-6 transition-all duration-300 cursor-pointer"
               (click)="toggleExperience(idx)"
-              [ngClass]="job.expanded ? 'border-primary bg-primary/5 shadow-lg shadow-blue-500/5' : 'border-white/5 hover:border-blue-500/20'"
+              [ngClass]="
+                job.expanded
+                  ? 'border-primary bg-primary/5 shadow-lg shadow-blue-500/5'
+                  : 'border-white/5 hover:border-blue-500/20'
+              "
             >
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 select-none">
+              <div
+                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 select-none"
+              >
                 <div>
-                  <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors duration-300">
+                  <h3
+                    class="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors duration-300"
+                  >
                     {{ job.role }}
                   </h3>
-                  <p class="text-xs sm:text-sm font-semibold text-accent font-mono">{{ job.company }}</p>
+                  <p class="text-xs sm:text-sm font-semibold text-accent font-mono">
+                    {{ job.company }}
+                  </p>
                 </div>
-                <span class="inline-block px-3 py-1 rounded-full text-xs font-mono font-medium glass border border-blue-500/10 text-primary w-fit">
+                <span
+                  class="inline-block px-3 py-1 rounded-full text-xs font-mono font-medium glass border border-blue-500/10 text-primary w-fit"
+                >
                   {{ job.duration }}
                 </span>
               </div>
 
               <!-- Expanded details pane -->
-              <div 
+              <div
                 class="transition-all duration-500 ease-in-out overflow-hidden"
                 [ngClass]="job.expanded ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'"
               >
-                <ul class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 list-disc list-inside leading-relaxed font-sans">
+                <ul
+                  class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 list-disc list-inside leading-relaxed font-sans"
+                >
                   @for (responsibility of job.responsibilities; track responsibility) {
                     <li>{{ responsibility }}</li>
                   }
@@ -179,8 +286,12 @@
                 <!-- Tech stack used in this role -->
                 <div class="mt-4 pt-4 border-t border-white/5 flex flex-wrap gap-2 select-none">
                   @for (tech of job.techStack; track tech) {
-                    <span class="px-2 py-1 rounded-md text-[10px] sm:text-xs font-mono bg-slate-950/40 text-slate-400 border border-white/5">
-                      {{ tech }}
+                    <span class="contents" [ngClass]="getExperienceSkillCategoryClass(tech)">
+                      <span
+                        class="px-2 py-1 rounded-md text-[10px] sm:text-xs font-mono font-semibold border skill-card-skill"
+                      >
+                        {{ tech }}
+                      </span>
                     </span>
                   }
                 </div>
@@ -192,12 +303,11 @@
     </div>
   </section>
 
-
   <!-- ==================== SKILLS SECTION ==================== -->
   <section id="skills" class="scroll-mt-24 space-y-6">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary">&lt;</span>Skills<span class="text-primary">/&gt;</span>
+        <span class="text-primary"></span>Skills<span class="text-primary">/</span>
       </h2>
       <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
     </div>
@@ -205,15 +315,57 @@
     <!-- Skills Display Area - Squeezed compact layout -->
     <div class="rounded-xl glass border border-white/5 overflow-hidden shadow-xl p-4 sm:p-6">
       <div class="grid grid-cols-2 md:grid-cols-5 gap-4 select-none font-sans">
-        @for (category of ['Languages', 'Automation', 'API', 'Frameworks', 'CI_CD', 'Databases', 'Test Management', 'Testing Types', 'Reports', 'Banking Domain']; track category) {
-          <div class="rounded-lg bg-slate-900/30 border border-white/5 p-3.5 hover:border-primary/20 hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between space-y-2.5">
+        @for (
+          category of [
+            'Languages',
+            'Automation',
+            'API',
+            'Frameworks',
+            'CI_CD',
+            'Databases',
+            'Test Management',
+            'Testing Types',
+            'Reports',
+            'Banking Domain',
+          ];
+          track category;
+          let i = $index
+        ) {
+          <div
+            [ngClass]="{
+              'skill-card': true,
+              'skill-card-0': i === 0,
+              'skill-card-1': i === 1,
+              'skill-card-2': i === 2,
+              'skill-card-3': i === 3,
+              'skill-card-4': i === 4,
+              'skill-card-5': i === 5,
+              'skill-card-6': i === 6,
+              'skill-card-7': i === 7,
+              'skill-card-8': i === 8,
+              'skill-card-9': i === 9,
+            }"
+            class="rounded-lg border p-3.5 hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between space-y-2.5"
+          >
             <div>
-              <h3 class="text-xs font-mono font-bold text-primary border-b border-white/5 pb-1.5 mb-2 select-none uppercase tracking-wider">
-                {{ category === 'CI_CD' ? 'CI / CD' : category === 'Test Management' ? 'Mgmt' : category === 'Testing Types' ? 'Tests' : category }}
+              <h3
+                class="text-xs font-mono font-bold border-b pb-1.5 mb-2 select-none uppercase tracking-wider skill-card-title"
+              >
+                {{
+                  category === 'CI_CD'
+                    ? 'CI / CD'
+                    : category === 'Test Management'
+                      ? 'Mgmt'
+                      : category === 'Testing Types'
+                        ? 'Tests'
+                        : category
+                }}
               </h3>
               <div class="flex flex-wrap gap-1.5">
                 @for (skill of skillsData[category]; track skill) {
-                  <span class="px-2 py-0.5 rounded text-[10px] sm:text-xs font-mono bg-slate-950/40 text-slate-300 border border-white/5">
+                  <span
+                    class="px-2 py-0.5 rounded text-[10px] sm:text-xs font-mono border skill-card-skill"
+                  >
                     {{ skill }}
                   </span>
                 }
@@ -225,12 +377,11 @@
     </div>
   </section>
 
-
   <!-- ==================== PROJECTS SECTION ==================== -->
   <section id="projects" class="scroll-mt-24 space-y-6 sm:space-y-8">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary">&lt;</span>Projects.py<span class="text-primary">/&gt;</span>
+        <span class="text-primary"></span>Projects<span class="text-primary">/</span>
       </h2>
       <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
     </div>
@@ -238,17 +389,22 @@
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       @for (project of projects(); track project.name) {
-        <div class="rounded-xl glass border border-white/5 overflow-hidden flex flex-col justify-between hover:border-primary/20 hover:scale-[1.01] hover:shadow-[0_10px_25px_rgba(59,130,246,0.15)] transition-all duration-300">
-          
+        <div
+          class="rounded-xl glass border border-white/5 overflow-hidden flex flex-col justify-between hover:border-primary/20 hover:scale-[1.01] hover:shadow-[0_10px_25px_rgba(59,130,246,0.15)] transition-all duration-300"
+        >
           <!-- Visual Decorative Mockup Card -->
-          <div class="h-44 bg-gradient-to-br from-slate-900 to-slate-950 border-b border-white/5 relative flex flex-col justify-between p-4 font-mono select-none">
+          <div
+            class="h-44 bg-gradient-to-br from-slate-900 to-slate-950 border-b border-white/5 relative flex flex-col justify-between p-4 font-mono select-none"
+          >
             <div class="flex items-center justify-between text-[10px] text-slate-500">
               <span>test_suite.py</span>
               <span class="text-accent">● RUNNING</span>
             </div>
-            
+
             <!-- Terminal Output Animation (Static snapshot styled mock) -->
-            <div class="text-[10px] text-slate-400 space-y-1 mt-2 flex-grow overflow-hidden select-none">
+            <div
+              class="text-[10px] text-slate-400 space-y-1 mt-2 flex-grow overflow-hidden select-none"
+            >
               <div class="text-primary font-bold">pytest --tb=short -v</div>
               <div class="text-slate-600">platform linux -- Python 3.10</div>
               <div class="text-slate-500">collected 48 tests</div>
@@ -265,7 +421,9 @@
             <!-- Tech badges overlay -->
             <div class="flex flex-wrap gap-1.5 mt-2">
               @for (tech of project.techStack.slice(0, 2); track tech) {
-                <span class="px-2 py-0.5 rounded-md text-[9px] bg-primary/10 text-primary border border-blue-500/10">
+                <span
+                  class="px-2 py-0.5 rounded-md text-[9px] bg-primary/10 text-primary border border-blue-500/10"
+                >
                   {{ tech }}
                 </span>
               }
@@ -275,7 +433,9 @@
           <!-- Card Description and data -->
           <div class="p-6 flex-grow flex flex-col justify-between space-y-6">
             <div class="space-y-3 font-sans">
-              <h3 class="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary">
+              <h3
+                class="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary"
+              >
                 {{ project.name }}
               </h3>
               <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -287,15 +447,30 @@
             <div class="space-y-3 font-sans text-xs">
               <!-- Features -->
               <details class="group border-b border-white/5 pb-2 cursor-pointer select-none">
-                <summary class="font-mono text-primary font-semibold hover:underline flex items-center justify-between">
+                <summary
+                  class="font-mono text-primary font-semibold hover:underline flex items-center justify-between"
+                >
                   Core Features
                   <span class="transition-transform group-open:rotate-180">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2.5"
+                      stroke="currentColor"
+                      class="w-3.5 h-3.5"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                      />
                     </svg>
                   </span>
                 </summary>
-                <ul class="list-disc pl-4 mt-2 space-y-1 text-slate-400 leading-relaxed select-text">
+                <ul
+                  class="list-disc pl-4 mt-2 space-y-1 text-slate-400 leading-relaxed select-text"
+                >
                   @for (feat of project.features; track feat) {
                     <li>{{ feat }}</li>
                   }
@@ -304,11 +479,24 @@
 
               <!-- Challenges -->
               <details class="group border-b border-white/5 pb-2 cursor-pointer select-none">
-                <summary class="font-mono text-accent font-semibold hover:underline flex items-center justify-between">
+                <summary
+                  class="font-mono text-accent font-semibold hover:underline flex items-center justify-between"
+                >
                   Challenges Solved
                   <span class="transition-transform group-open:rotate-180">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2.5"
+                      stroke="currentColor"
+                      class="w-3.5 h-3.5"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                      />
                     </svg>
                   </span>
                 </summary>
@@ -319,11 +507,24 @@
 
               <!-- Lessons -->
               <details class="group cursor-pointer select-none">
-                <summary class="font-mono text-amber-500 font-semibold hover:underline flex items-center justify-between">
+                <summary
+                  class="font-mono text-amber-500 font-semibold hover:underline flex items-center justify-between"
+                >
                   Lessons Learned
                   <span class="transition-transform group-open:rotate-180">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-3.5 h-3.5">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="2.5"
+                      stroke="currentColor"
+                      class="w-3.5 h-3.5"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                      />
                     </svg>
                   </span>
                 </summary>
@@ -335,7 +536,7 @@
 
             <!-- Bottom Action links -->
             <div class="flex items-center gap-4 pt-4 border-t border-white/5 font-sans">
-              <a 
+              <a
                 [href]="project.github"
                 target="_blank"
                 rel="noopener"
@@ -343,7 +544,7 @@
               >
                 Code Repository
               </a>
-              <a 
+              <a
                 [href]="project.demo"
                 target="_blank"
                 rel="noopener"
@@ -352,19 +553,17 @@
                 Live Demo
               </a>
             </div>
-
           </div>
         </div>
       }
     </div>
   </section>
 
-
   <!-- ==================== CERTIFICATIONS SECTION ==================== -->
   <section id="certifications" class="scroll-mt-24 space-y-6 sm:space-y-8">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary">&lt;</span>Certifications.yml<span class="text-primary">/&gt;</span>
+        <span class="text-primary"></span>Certifications<span class="text-primary">/</span>
       </h2>
       <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
     </div>
@@ -372,23 +571,33 @@
     <!-- Collectible Certification Grids -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-sans">
       @for (cert of certifications(); track cert.name) {
-        <div class="rounded-xl glass border border-white/5 p-5 hover:border-primary/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-500 relative overflow-hidden group select-none flex flex-col justify-between gap-4">
+        <div
+          class="rounded-xl glass border border-white/5 p-5 hover:border-primary/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-500 relative overflow-hidden group select-none flex flex-col justify-between gap-4"
+        >
           <!-- Absolute shining effect overlay -->
-          <div class="absolute -top-1/2 -left-1/2 w-48 h-48 bg-primary/5 blur-2xl group-hover:bg-primary/10 transition-colors duration-500"></div>
+          <div
+            class="absolute -top-1/2 -left-1/2 w-48 h-48 bg-primary/5 blur-2xl group-hover:bg-primary/10 transition-colors duration-500"
+          ></div>
 
           <div class="relative z-10 flex flex-col items-center text-center space-y-3">
-            <span class="text-4xl filter drop-shadow-[0_0_8px_#3B82F6] transition-transform duration-300 group-hover:scale-110">
+            <span
+              class="text-4xl filter drop-shadow-[0_0_8px_#3B82F6] transition-transform duration-300 group-hover:scale-110"
+            >
               {{ cert.icon }}
             </span>
             <div class="space-y-1">
-              <h3 class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors duration-300">
+              <h3
+                class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors duration-300"
+              >
                 {{ cert.name }}
               </h3>
               <p class="text-xs text-slate-400 font-semibold">{{ cert.issuer }}</p>
             </div>
           </div>
 
-          <div class="relative z-10 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-500">
+          <div
+            class="relative z-10 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-500"
+          >
             <span>ID: {{ cert.id }}</span>
             <span class="text-accent font-semibold">{{ cert.date }}</span>
           </div>
@@ -397,59 +606,102 @@
     </div>
   </section>
 
-
   <!-- ==================== CONTACT SECTION ==================== -->
   <section id="contact" class="scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary">&lt;</span>Contact.ts<span class="text-primary">/&gt;</span>
+        <span class="text-primary"></span>Contact<span class="text-primary">/</span>
       </h2>
       <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
     </div>
 
     <!-- Squeezed email dashboard card -->
     <div class="max-w-2xl mx-auto text-center space-y-6">
-      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-md mx-auto leading-relaxed">
-        Have an automation challenge, testing pipeline optimization role, or enterprise SDET contract? Let's connect.
+      <p
+        class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-md mx-auto leading-relaxed"
+      >
+        Have an automation challenge, testing pipeline optimization role, or enterprise SDET
+        contract? Let's connect.
       </p>
 
       <!-- Clickable/Copyable Email Card -->
-      <div 
-        (click)="workspaceService.showSnackbar('Email address copied to clipboard!'); copyEmailToClipboard()"
+      <div
+        (click)="
+          workspaceService.showSnackbar('Email address copied to clipboard!');
+          copyEmailToClipboard()
+        "
         class="inline-flex items-center space-x-4 px-6 py-4 rounded-xl glass border border-blue-500/20 hover:border-primary/40 hover:bg-slate-900/10 cursor-pointer shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 group"
       >
-        <div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:scale-105 transition-transform duration-300">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+        <div
+          class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:scale-105 transition-transform duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
+            />
           </svg>
         </div>
-        
+
         <div class="text-left font-mono">
           <p class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Email Address</p>
-          <p class="text-sm sm:text-base text-slate-900 dark:text-slate-100 font-semibold group-hover:text-primary transition-colors duration-300">
+          <p
+            class="text-sm sm:text-base text-slate-900 dark:text-slate-100 font-semibold group-hover:text-primary transition-colors duration-300"
+          >
             {{ personal.email }}
           </p>
         </div>
 
-        <div class="w-8 h-8 rounded-md bg-slate-950/20 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-primary transition-colors duration-300 ml-4">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H5.25m11.9-3.664A2.251 2.251 0 0 0 15 2.25h-1.5a2.25 2.25 0 0 0-2.25 2.25v1.5a2.25 2.25 0 0 0 2.25 2.25H15a2.25 2.25 0 0 0 2.25-2.25V3.75a2.251 2.251 0 0 0-.25-1.086z" />
+        <div
+          class="w-8 h-8 rounded-md bg-slate-950/20 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-primary transition-colors duration-300 ml-4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-4 h-4"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H5.25m11.9-3.664A2.251 2.251 0 0 0 15 2.25h-1.5a2.25 2.25 0 0 0-2.25 2.25v1.5a2.25 2.25 0 0 0 2.25 2.25H15a2.25 2.25 0 0 0 2.25-2.25V3.75a2.251 2.251 0 0 0-.25-1.086z"
+            />
           </svg>
         </div>
       </div>
-      
+
       <div class="pt-4">
-        <a 
+        <a
           [href]="'mailto:' + personal.email"
           class="inline-flex items-center space-x-1.5 text-xs font-mono text-primary hover:text-blue-600 transition-colors duration-300"
         >
           <span>Open Email Client</span>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-3.5 h-3.5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+            />
           </svg>
         </a>
       </div>
     </div>
   </section>
-
 </div>

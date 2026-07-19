@@ -1,12 +1,13 @@
 import { Injectable, signal } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WorkspaceService {
   readonly activeSection = signal<string>('home');
   readonly theme = signal<'dark' | 'light'>('dark');
   readonly inspectorActive = signal<boolean>(false);
+  readonly inspectorTimerPaused = signal<boolean>(false);
   readonly inspectorTimeLeft = signal<number>(60);
   readonly snackbarMessage = signal<string | null>(null);
 
@@ -30,12 +31,17 @@ export class WorkspaceService {
     if (nextState) {
       this.startInspectorTimer();
     } else {
+      this.inspectorTimerPaused.set(false);
       this.stopInspectorTimer();
     }
   }
 
+  setInspectorTimerPaused(paused: boolean): void {
+    this.inspectorTimerPaused.set(paused);
+  }
+
   extendInspectorTime(seconds = 60): void {
-    this.inspectorTimeLeft.update(val => Math.min(val + seconds, 300));
+    this.inspectorTimeLeft.update((val) => Math.min(val + seconds, 300));
   }
 
   showSnackbar(message: string): void {
@@ -54,9 +60,12 @@ export class WorkspaceService {
     this.inspectorTimeLeft.set(60);
     this.stopInspectorTimer(); // clear any previous interval
     this.timerInterval = setInterval(() => {
+      if (this.inspectorTimerPaused()) return;
+
       const left = this.inspectorTimeLeft();
       if (left <= 1) {
         this.inspectorActive.set(false);
+        this.inspectorTimerPaused.set(false);
         this.stopInspectorTimer();
       } else {
         this.inspectorTimeLeft.set(left - 1);

@@ -51,7 +51,7 @@ export const PORTFOLIO_DATA = {
         "Participated in defect triaging, root cause analysis, issue validation, and coordination with development and business teams.",
         "Prepared Solution Design Documents (SDD), test cases, test scenarios, requirement analysis documents, and test execution reports."
       ],
-      "techStack": ["Python", "Selenium WebDriver", "Pytest", "ISO20022", "SQL", "JIRA"],
+      "techStack": ["Python", "Selenium WebDriver", "Pytest", "ISO20022 (MX)", "SQL", "JIRA"],
       "javaClass": "public class AutomationTestEngineer extends Role {\n    String client = \"Intesa Sanpaolo Bank\";\n    String duration = \"Oct 2023 – Present\";\n    List<String> responsibilities = List.of(\n        \"Designed automated scripts using Selenium WebDriver & Pytest\",\n        \"Validated ISO15022 & ISO20022 financial messages\",\n        \"Performed API testing and SQL backend data validations\",\n        \"Prepared Solution Design Documents (SDD) & test reports\"\n    );\n}"
     },
     {

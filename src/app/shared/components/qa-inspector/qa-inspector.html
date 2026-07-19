@@ -1,125 +1,181 @@
 @if (workspaceService.inspectorActive()) {
-  <div 
-    class="hidden sm:block qa-inspector-panel fixed bottom-6 left-6 w-[340px] sm:w-[380px] rounded-xl glass-premium shadow-2xl border border-blue-500/20 text-slate-300 font-mono text-xs z-50 overflow-hidden select-none animate-pulse-slow animate-float"
-    style="animation-duration: 4s;"
+  <div
+    data-inspector-control
+    class="hidden sm:block qa-inspector-panel fixed bottom-6 left-6 w-[380px] max-w-[calc(100vw-3rem)] rounded-lg bg-slate-950 shadow-2xl border border-blue-500/30 text-slate-300 font-mono text-xs z-50 overflow-hidden"
   >
-    <!-- Header Bar -->
-    <div class="bg-slate-900/90 px-4 py-3 flex items-center justify-between border-b border-white/5">
-      <span class="font-bold flex items-center gap-1.5 text-primary text-[11px] sm:text-xs">
-        🕵️ QA ELEMENT INSPECTOR
-      </span>
-      <div class="flex items-center space-x-1.5">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent animate-ping"></span>
-        <span class="text-[9px] sm:text-[10px] text-accent uppercase font-bold">active</span>
+    <div class="bg-slate-900 px-4 py-3 flex items-center justify-between border-b border-white/10">
+      <div class="min-w-0">
+        <div class="font-bold flex items-center gap-2 text-primary text-xs">
+          <span class="w-2 h-2 rounded-full bg-accent"></span>
+          <span>QA Element Inspector</span>
+        </div>
+        <div class="mt-1 text-[10px] text-slate-500">
+          @if (locked()) {
+            Pinned selection
+          } @else {
+            Live preview · {{ workspaceService.inspectorTimeLeft() }}s
+          }
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1.5">
+        @if (qaInfo()) {
+          <button
+            type="button"
+            (click)="clearSelection()"
+            class="h-8 px-2.5 rounded-md border border-white/10 text-[10px] font-semibold text-slate-300 hover:text-white hover:border-blue-400/60 hover:bg-blue-500/10 transition-colors cursor-pointer"
+            aria-label="Clear inspected element"
+          >
+            Clear
+          </button>
+        }
+        <button
+          type="button"
+          (click)="closeInspector()"
+          class="h-8 w-8 rounded-md border border-white/10 text-slate-400 hover:text-white hover:border-blue-400/60 hover:bg-blue-500/10 transition-colors cursor-pointer"
+          aria-label="Close inspector"
+          title="Close inspector"
+        >
+          ×
+        </button>
       </div>
     </div>
 
-    <!-- Active Details / Value Grid -->
     <div class="p-4 space-y-4">
       @if (qaInfo(); as info) {
-        <!-- Tag & DOM Attributes -->
-        <div class="space-y-1 bg-slate-950/40 p-2.5 rounded-lg border border-white/5">
-          <div class="flex items-center justify-between">
-            <span class="text-amber-400 font-bold">&lt;{{ info.tagName }}&gt;</span>
-            @if (info.text) {
-              <span class="text-slate-500 text-[10px] truncate max-w-[180px]">{{ info.text }}</span>
-            }
+        <div class="space-y-2">
+          <div
+            class="flex items-start justify-between gap-3 rounded-md bg-slate-900/80 border border-white/10 p-3"
+          >
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="text-amber-400 font-bold">&lt;{{ info.tagName }}&gt;</span>
+                @if (info.role) {
+                  <span class="rounded bg-blue-500/15 px-1.5 py-0.5 text-[10px] text-blue-200"
+                    >role={{ info.role }}</span
+                  >
+                }
+              </div>
+              @if (info.text) {
+                <div class="mt-1 truncate text-[10px] text-slate-400">{{ info.text }}</div>
+              }
+            </div>
+
+            <button
+              type="button"
+              (click)="copySummary(info)"
+              class="shrink-0 rounded-md border border-blue-500/30 bg-blue-500/10 px-2.5 py-1.5 text-[10px] font-bold text-primary hover:bg-blue-500/20 hover:text-white transition-colors cursor-pointer"
+              aria-label="Copy all locator details"
+            >
+              {{ copiedKey() === 'summary' ? 'Copied' : 'Copy All' }}
+            </button>
           </div>
-          <div class="text-[10px] text-slate-400 space-y-0.5 mt-1 border-t border-white/5 pt-1.5">
+
+          <div class="grid grid-cols-2 gap-2 text-[10px]">
             @if (info.elementId) {
-              <div><span class="text-slate-500">ID:</span> #{{ info.elementId }}</div>
+              <div class="min-w-0 rounded bg-slate-900/60 px-2 py-1.5 border border-white/5">
+                <div class="text-slate-500 uppercase">ID</div>
+                <div class="truncate text-slate-300">#{{ info.elementId }}</div>
+              </div>
+            }
+            @if (info.testId) {
+              <div class="min-w-0 rounded bg-slate-900/60 px-2 py-1.5 border border-white/5">
+                <div class="text-slate-500 uppercase">Test ID</div>
+                <div class="truncate text-slate-300">{{ info.testId }}</div>
+              </div>
+            }
+            @if (info.name) {
+              <div class="min-w-0 rounded bg-slate-900/60 px-2 py-1.5 border border-white/5">
+                <div class="text-slate-500 uppercase">Name</div>
+                <div class="truncate text-slate-300">{{ info.name }}</div>
+              </div>
+            }
+            @if (info.ariaLabel) {
+              <div class="min-w-0 rounded bg-slate-900/60 px-2 py-1.5 border border-white/5">
+                <div class="text-slate-500 uppercase">ARIA</div>
+                <div class="truncate text-slate-300">{{ info.ariaLabel }}</div>
+              </div>
             }
             @if (info.classes) {
-              <div class="truncate"><span class="text-slate-500">Class:</span> .{{ info.classes }}</div>
+              <div class="min-w-0 rounded bg-slate-900/60 px-2 py-1.5 border border-white/5">
+                <div class="text-slate-500 uppercase">Classes</div>
+                <div class="truncate text-slate-300">.{{ info.classes }}</div>
+              </div>
             }
+            <div class="min-w-0 rounded bg-slate-900/60 px-2 py-1.5 border border-white/5">
+              <div class="text-slate-500 uppercase">Size</div>
+              <div class="truncate text-slate-300">{{ info.dimensions }}</div>
+            </div>
           </div>
         </div>
 
-        <!-- Locators fields -->
         <div class="space-y-2.5">
-          <!-- XPath -->
-          <div class="space-y-1">
-            <span class="text-[10px] text-slate-500 uppercase tracking-wider">XPath</span>
-            <div class="flex items-center bg-slate-950/60 rounded-md border border-white/5 overflow-hidden">
-              <span class="flex-grow px-2.5 py-1.5 text-[11px] truncate text-slate-300">{{ info.xpath }}</span>
-              <button 
-                (click)="copyLocator('xpath', info.xpath)"
-                class="px-2.5 py-1.5 bg-slate-900 border-l border-white/5 text-primary hover:text-white hover:bg-primary/20 transition-all duration-200 cursor-pointer"
-                [attr.aria-label]="'Copy XPath'"
+          @for (row of locatorRows(); track row.key) {
+            <div class="space-y-1">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[10px] text-slate-500 uppercase tracking-wide">{{
+                  row.label
+                }}</span>
+                @if (row.primary) {
+                  <span class="text-[9px] uppercase font-bold text-accent">recommended</span>
+                }
+              </div>
+              <div
+                class="flex items-stretch bg-slate-950 rounded-md border overflow-hidden"
+                [class.border-blue-500/40]="row.primary"
+                [class.border-white/10]="!row.primary"
               >
-                {{ copiedKey() === 'xpath' ? 'Copied!' : 'Copy' }}
-              </button>
+                <code
+                  class="flex-grow min-w-0 px-2.5 py-2 text-[11px] leading-5 truncate"
+                  [class.text-primary]="row.primary"
+                  [class.text-slate-300]="!row.primary"
+                  [title]="row.value"
+                >
+                  {{ row.value }}
+                </code>
+                <button
+                  type="button"
+                  (click)="copyLocator(row.key, row.value)"
+                  class="shrink-0 min-w-[68px] px-2.5 py-2 bg-slate-900 border-l border-white/10 text-primary hover:text-white hover:bg-primary/20 transition-colors cursor-pointer"
+                  [attr.aria-label]="'Copy ' + row.label"
+                >
+                  {{ copiedKey() === row.key ? 'Copied' : 'Copy' }}
+                </button>
+              </div>
             </div>
-          </div>
+          }
+        </div>
 
-          <!-- CSS Selector -->
-          <div class="space-y-1">
-            <span class="text-[10px] text-slate-500 uppercase tracking-wider">CSS Selector</span>
-            <div class="flex items-center bg-slate-950/60 rounded-md border border-white/5 overflow-hidden">
-              <span class="flex-grow px-2.5 py-1.5 text-[11px] truncate text-slate-300">{{ info.css }}</span>
-              <button 
-                (click)="copyLocator('css', info.css)"
-                class="px-2.5 py-1.5 bg-slate-900 border-l border-white/5 text-primary hover:text-white hover:bg-primary/20 transition-all duration-200 cursor-pointer"
-                [attr.aria-label]="'Copy CSS Selector'"
-              >
-                {{ copiedKey() === 'css' ? 'Copied!' : 'Copy' }}
-              </button>
-            </div>
-          </div>
-
-          <!-- Playwright -->
-          <div class="space-y-1">
-            <span class="text-[10px] text-slate-500 uppercase tracking-wider">Playwright (TS)</span>
-            <div class="flex items-center bg-slate-950/60 rounded-md border border-white/5 overflow-hidden">
-              <span class="flex-grow px-2.5 py-1.5 text-[11px] truncate text-primary/95">{{ info.playwright }}</span>
-              <button 
-                (click)="copyLocator('playwright', info.playwright)"
-                class="px-2.5 py-1.5 bg-slate-900 border-l border-white/5 text-primary hover:text-white hover:bg-primary/20 transition-all duration-200 cursor-pointer"
-                [attr.aria-label]="'Copy Playwright Locator'"
-              >
-                {{ copiedKey() === 'playwright' ? 'Copied!' : 'Copy' }}
-              </button>
-            </div>
-          </div>
-
-          <!-- Selenium Java -->
-          <div class="space-y-1">
-            <span class="text-[10px] text-slate-500 uppercase tracking-wider">Selenium (Java)</span>
-            <div class="flex items-center bg-slate-950/60 rounded-md border border-white/5 overflow-hidden">
-              <span class="flex-grow px-2.5 py-1.5 text-[11px] truncate text-slate-300">{{ info.seleniumJava }}</span>
-              <button 
-                (click)="copyLocator('java', info.seleniumJava)"
-                class="px-2.5 py-1.5 bg-slate-900 border-l border-white/5 text-primary hover:text-white hover:bg-primary/20 transition-all duration-200 cursor-pointer"
-                [attr.aria-label]="'Copy Selenium Java Locator'"
-              >
-                {{ copiedKey() === 'java' ? 'Copied!' : 'Copy' }}
-              </button>
-            </div>
-          </div>
-
-          <!-- Selenium Python -->
-          <div class="space-y-1">
-            <span class="text-[10px] text-slate-500 uppercase tracking-wider">Selenium (Python)</span>
-            <div class="flex items-center bg-slate-950/60 rounded-md border border-white/5 overflow-hidden">
-              <span class="flex-grow px-2.5 py-1.5 text-[11px] truncate text-slate-300">{{ info.seleniumPython }}</span>
-              <button 
-                (click)="copyLocator('python', info.seleniumPython)"
-                class="px-2.5 py-1.5 bg-slate-900 border-l border-white/5 text-primary hover:text-white hover:bg-primary/20 transition-all duration-200 cursor-pointer"
-                [attr.aria-label]="'Copy Selenium Python Locator'"
-              >
-                {{ copiedKey() === 'python' ? 'Copied!' : 'Copy' }}
-              </button>
-            </div>
-          </div>
+        <div
+          class="rounded-md border border-white/10 bg-slate-900/60 p-2 text-[10px] text-slate-400"
+        >
+          <div class="mb-1 text-slate-500 uppercase">DOM path</div>
+          <div class="truncate" [title]="info.domPath">{{ info.domPath }}</div>
         </div>
       } @else {
-        <!-- Idle instruction state -->
         <div class="py-8 text-center text-slate-500 space-y-3 flex flex-col items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-slate-600 animate-pulse">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672ZM12 2.25V4.5m5.303.197-1.593 1.593m2.593-1.026h-2.25M6.697 4.697l1.593 1.593m-2.593-1.026H7.94" />
-          </svg>
-          <p class="text-[10px] leading-relaxed max-w-[240px] mx-auto select-none uppercase tracking-wider font-semibold">
-            Hover over buttons, inputs, links, or sections to inspect locators...
+          <div
+            class="flex h-10 w-10 items-center justify-center rounded-lg border border-blue-500/30 bg-blue-500/10 text-primary"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672ZM12 2.25V4.5m5.303.197-1.593 1.593m2.593-1.026h-2.25M6.697 4.697l1.593 1.593m-2.593-1.026H7.94"
+              />
+            </svg>
+          </div>
+          <p
+            class="text-[10px] leading-relaxed max-w-[250px] mx-auto uppercase tracking-wide font-semibold"
+          >
+            Hover to preview. Click an element to pin it for copying.
           </p>
         </div>
       }

@@ -1,5 +1,9 @@
-<header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 glass border-b border-slate-900/10 dark:border-white/5">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
+<header
+  class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 glass border-b border-slate-900/10 dark:border-white/5"
+>
+  <div
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between"
+  >
     <!-- Brand Logo -->
     <div class="flex items-center space-x-2 cursor-pointer" (click)="scrollToSection('home')">
       <span class="text-xl sm:text-2xl font-mono font-bold tracking-tight text-glow">
@@ -18,8 +22,12 @@
           class="px-4 py-2 text-sm font-medium transition-all duration-300 rounded-md cursor-pointer"
           [class.text-primary]="workspaceService.activeSection() === item.id"
           [class.active-nav-indicator]="workspaceService.activeSection() === item.id"
-          [class.text-muted-dark]="workspaceService.activeSection() !== item.id && workspaceService.theme() === 'dark'"
-          [class.text-muted-light]="workspaceService.activeSection() !== item.id && workspaceService.theme() === 'light'"
+          [class.text-muted-dark]="
+            workspaceService.activeSection() !== item.id && workspaceService.theme() === 'dark'
+          "
+          [class.text-muted-light]="
+            workspaceService.activeSection() !== item.id && workspaceService.theme() === 'light'
+          "
           [class.hover:text-primary]="workspaceService.activeSection() !== item.id"
         >
           {{ item.label }}
@@ -33,19 +41,29 @@
       <button
         (click)="workspaceService.toggleInspector()"
         class="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono font-medium transition-all duration-300 cursor-pointer"
-        [ngClass]="workspaceService.inspectorActive() ? 'bg-primary/20 text-primary border-primary shadow-[0_0_8px_rgba(59,130,246,0.2)]' : 'glass border-blue-500/10 text-slate-400 hover:text-primary hover:border-primary/30'"
+        [ngClass]="
+          workspaceService.inspectorActive()
+            ? 'bg-primary/20 text-primary border-primary shadow-[0_0_8px_rgba(59,130,246,0.2)]'
+            : 'glass border-blue-500/10 text-slate-400 hover:text-primary hover:border-primary/30'
+        "
         aria-label="Toggle Inspector Mode"
       >
         <span>🕵️ Inspector:</span>
         @if (workspaceService.inspectorActive()) {
-          <span class="font-bold text-accent">ON ({{ workspaceService.inspectorTimeLeft() }}s)</span>
+          @if (workspaceService.inspectorTimerPaused()) {
+            <span class="font-bold text-accent">PINNED</span>
+          } @else {
+            <span class="font-bold text-accent"
+              >ON ({{ workspaceService.inspectorTimeLeft() }}s)</span
+            >
+          }
         } @else {
           <span class="font-bold text-slate-500">OFF</span>
         }
       </button>
 
       <!-- Extend Inspector Time Button -->
-      @if (workspaceService.inspectorActive()) {
+      @if (workspaceService.inspectorActive() && !workspaceService.inspectorTimerPaused()) {
         <button
           (click)="workspaceService.extendInspectorTime(60)"
           class="hidden sm:inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg border border-blue-500/10 glass text-[10px] font-mono font-semibold text-primary hover:text-white hover:bg-primary/20 hover:border-primary/30 transition-all duration-300 cursor-pointer"
@@ -63,13 +81,35 @@
       >
         @if (workspaceService.theme() === 'dark') {
           <!-- Sun Icon for Light mode switch -->
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m0 13.5V21M4.22 4.22l1.636 1.636m12.288 12.288l1.636 1.636M3 12h2.25m13.5 0H21M5.856 18.144l1.636-1.636m12.288-12.288l1.636-1.636M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v2.25m0 13.5V21M4.22 4.22l1.636 1.636m12.288 12.288l1.636 1.636M3 12h2.25m13.5 0H21M5.856 18.144l1.636-1.636m12.288-12.288l1.636-1.636M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z"
+            />
           </svg>
         } @else {
           <!-- Moon Icon for Dark mode switch -->
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+            />
           </svg>
         }
       </button>
@@ -80,11 +120,22 @@
         class="md:hidden p-2.5 rounded-lg glass border border-blue-500/10 text-primary hover:bg-primary/10 transition-all duration-300 cursor-pointer"
         aria-label="Open Menu"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
           @if (isMobileMenuOpen()) {
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           } @else {
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
           }
         </svg>
       </button>
@@ -104,8 +155,12 @@
           class="w-full text-left px-4 py-3 rounded-md text-base font-medium transition-all duration-300 cursor-pointer"
           [class.bg-primary/10]="workspaceService.activeSection() === item.id"
           [class.text-primary]="workspaceService.activeSection() === item.id"
-          [class.text-muted-dark]="workspaceService.activeSection() !== item.id && workspaceService.theme() === 'dark'"
-          [class.text-muted-light]="workspaceService.activeSection() !== item.id && workspaceService.theme() === 'light'"
+          [class.text-muted-dark]="
+            workspaceService.activeSection() !== item.id && workspaceService.theme() === 'dark'
+          "
+          [class.text-muted-light]="
+            workspaceService.activeSection() !== item.id && workspaceService.theme() === 'light'
+          "
         >
           {{ item.label }}
         </button>
@@ -114,5 +169,8 @@
   </div>
 
   <!-- Scroll Progress Bar -->
-  <div class="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary to-accent transition-all duration-100 ease-out shadow-[0_0_8px_#3B82F6]" [style.width.%]="scrollProgress()"></div>
+  <div
+    class="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary to-accent transition-all duration-100 ease-out shadow-[0_0_8px_#3B82F6]"
+    [style.width.%]="scrollProgress()"
+  ></div>
 </header>

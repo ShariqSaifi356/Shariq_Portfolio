@@ -165,3 +165,217 @@ html, body {
   box-shadow: 0 0 8px #3B82F6;
 }
 
+/* ======================== LIGHT MODE CONTRAST FIXES ======================== */
+
+/* Light mode: Override muted text colors for better readability */
+.light .text-slate-400 {
+  @apply text-slate-600;
+}
+
+.light .text-slate-500 {
+  @apply text-slate-700;
+}
+
+.light .text-slate-600 {
+  @apply text-slate-700;
+}
+
+.light .text-muted-light {
+  color: #475569; /* darker gray for better contrast */
+}
+
+.light .text-gray-400 {
+  @apply text-gray-700;
+}
+
+.light .text-gray-500 {
+  @apply text-gray-700;
+}
+
+/* Navigation items - ensure proper contrast */
+.light nav button:not([class*="bg-"]) {
+  color: #475569;
+}
+
+.light nav button:hover {
+  color: #1e293b;
+}
+
+/* Light mode: Main body text should be dark for maximum contrast */
+.light {
+  color: #1e293b;
+}
+
+.light p {
+  color: #334155;
+}
+
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6 {
+  color: #0f172a;
+}
+
+/* Light mode: Labels and captions */
+.light .text-xs {
+  color: inherit;
+}
+
+.light [class*="uppercase"] {
+  color: #475569;
+}
+
+/* Light mode: Secondary text in cards and components */
+.light .text-opacity-75 {
+  color: #475569;
+}
+
+/* Light mode: Ensure proper contrast for small muted text */
+.light .text-\[10px\],
+.light .text-\[11px\],
+.light .text-\[12px\] {
+  color: #475569;
+}
+
+/* Light mode: Fix accent colors for visibility */
+.light .text-accent {
+  color: #16a34a; /* darker green */
+}
+
+/* Light mode: Fix border/divider colors */
+.light .border-white\/5 {
+  @apply border-slate-300;
+}
+
+.light .border-white\/10 {
+  @apply border-slate-300;
+}
+
+.light .border-blue-500\/20 {
+  @apply border-blue-400;
+}
+
+.light .border-blue-500\/10 {
+  @apply border-blue-400;
+}
+
+/* Light mode: Ensure backgrounds provide good contrast */
+.light .bg-slate-900\/30 {
+  @apply bg-slate-100;
+}
+
+.light .bg-slate-900\/20 {
+  @apply bg-slate-100;
+}
+
+.light .bg-slate-950\/40 {
+  @apply bg-slate-200;
+}
+
+.light .bg-slate-950\/20 {
+  @apply bg-slate-100;
+}
+
+/* Light mode: Fix text on semi-transparent backgrounds */
+.light .glass:not([class*="text-"]) {
+  color: #1e293b;
+}
+
+.light .glass p,
+.light .glass span:not([class*="text-"]) {
+  color: #334155;
+}
+
+/* Light mode: Metrics and numbers */
+.light .font-mono {
+  color: inherit;
+}
+
+/* Light mode: Dark text for descriptions */
+.light .leading-relaxed {
+  color: #334155;
+}
+
+/* Light mode: Experience timeline indicator button styling */
+.light .absolute.rounded-full.bg-slate-900 {
+  background-color: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+  color: #3b82f6 !important;
+}
+
+.light .absolute.rounded-full.bg-primary {
+  background-color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+  color: white !important;
+}
+
+/* Light mode: Project card code mockup background - override dark gradient */
+.light .bg-gradient-to-br.from-slate-900.to-slate-950 {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important;
+}
+
+/* Alternative selector for project mockup card */
+.light div[class*="from-slate-900"] {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important;
+}
+
+/* Light mode: Timestamp and metadata */
+.light [class*="font-mono"][class*="text-"]:not([class*="text-primary"]):not([class*="text-accent"]) {
+  color: #475569;
+}
+
+/* Light mode: Tags and badges */
+.light .rounded-full {
+  color: inherit;
+}
+
+.light .px-2.py-0\.5,
+.light .px-2.py-1,
+.light .px-3.py-1 {
+  color: #1e293b;
+}
+
+/* Light mode: Subtle text in details/summary */
+.light details {
+  color: #334155;
+}
+
+.light details summary {
+  color: #1e293b;
+}
+
+/* Light mode: List items */
+.light li {
+  color: #334155;
+}
+
+/* Light mode: Proper contrast for all text on glass elements */
+.light .glass-premium {
+  color: #1e293b;
+}
+
+/* Light mode: Ensure input and interactive elements have good contrast */
+.light input::placeholder {
+  color: #94a3b8;
+}
+
+.light textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* Light mode: Force colored text visibility in project details */
+.light .text-primary {
+  color: #3b82f6 !important;
+}
+
+.light .text-accent {
+  color: #22c55e !important;
+}
+
+.light .text-amber-500 {
+  color: #d97706 !important;
+}
+

@@ -1,4 +1,12 @@
-import { Component, OnInit, ElementRef, ViewChild, inject, signal, AfterViewChecked } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  inject,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { WorkspaceService } from '../../services/workspace.service';
@@ -12,31 +20,29 @@ interface TerminalLine {
   selector: 'app-custom-terminal',
   imports: [CommonModule, FormsModule],
   templateUrl: './custom-terminal.html',
-  styleUrl: './custom-terminal.css'
+  styleUrl: './custom-terminal.css',
 })
 export class CustomTerminal implements OnInit, AfterViewChecked {
   private readonly workspaceService = inject(WorkspaceService);
-  
+
   @ViewChild('terminalBody') private terminalBody!: ElementRef;
   @ViewChild('cmdInput') private cmdInput!: ElementRef;
 
   readonly lines = signal<TerminalLine[]>([]);
   readonly currentInput = signal<string>('');
   readonly isTyping = signal<boolean>(true);
-  readonly promptPrefix = 'shariq@qa-portfolio:~$ ';
-  
-  private initialCommand = 'whoami';
-  private initialOutput = [
+
+  private readonly initialOutput = [
     "Hi, I'm Shariq",
-    "QA Automation Engineer",
-    "",
-    "Specialized in:",
-    "  • Selenium & Playwright",
-    "  • Java & Python",
-    "  • API Automation (REST Assured / Postman)",
-    "  • Angular & Tailwind CSS",
-    "",
-    "Type 'help' to see a list of available custom CLI commands."
+    'QA Automation Engineer',
+    '',
+    'Specialized in:',
+    'Selenium and Playwright',
+    'Java and Python',
+    'API Automation with REST Assured and Postman',
+    'Angular and Tailwind CSS',
+    '',
+    'Explore skills, projects, contact, theme, or clear from the field below.',
   ];
 
   ngOnInit(): void {
@@ -58,91 +64,99 @@ export class CustomTerminal implements OnInit, AfterViewChecked {
     const command = this.currentInput().trim();
     if (!command) return;
 
-    // Add command to log
-    this.lines.update(l => [...l, { text: `${this.promptPrefix}${command}`, type: 'input' }]);
+    this.lines.update((lines) => [...lines, { text: `You asked: ${command}`, type: 'input' }]);
     this.currentInput.set('');
 
-    const cmdLower = command.toLowerCase();
-    
-    if (cmdLower === 'help') {
-      this.lines.update(l => [
-        ...l,
-        { text: 'Available commands:', type: 'success' },
-        { text: '  whoami      - Get a summary of my QA profile', type: 'output' },
-        { text: '  skills      - List my full testing & developer automation stack', type: 'output' },
-        { text: '  projects    - Show highlights of frameworks I\'ve built', type: 'output' },
-        { text: '  contact     - Info on how to get in touch', type: 'output' },
-        { text: '  theme       - Toggle website colors (dark/light)', type: 'output' },
-        { text: '  clear       - Clear the terminal history', type: 'output' }
+    const normalizedTopic = command.toLowerCase();
+
+    if (normalizedTopic === 'help') {
+      this.lines.update((lines) => [
+        ...lines,
+        { text: 'Available topics:', type: 'success' },
+        { text: 'Profile - Get a summary of my QA profile', type: 'output' },
+        { text: 'Skills - List my testing and automation stack', type: 'output' },
+        { text: "Projects - Show highlights of frameworks I've built", type: 'output' },
+        { text: 'Contact - See how to get in touch', type: 'output' },
+        { text: 'Theme - Toggle website colors', type: 'output' },
+        { text: 'Clear - Reset this panel', type: 'output' },
       ]);
-    } else if (cmdLower === 'whoami') {
-      this.lines.update(l => [
-        ...l,
-        { text: "Shariq - QA Automation Specialist dedicated to designing flawless automation rigs.", type: 'output' },
-        { text: "Main Mission: Eradicate regressions, optimize pipeline speed, and secure absolute test coverage.", type: 'output' }
+    } else if (normalizedTopic === 'profile' || normalizedTopic === 'whoami') {
+      this.lines.update((lines) => [
+        ...lines,
+        {
+          text: 'Shariq - QA Automation Specialist focused on reliable automation systems.',
+          type: 'output',
+        },
+        {
+          text: 'Main focus: reduce regressions, improve pipeline speed, and strengthen test coverage.',
+          type: 'output',
+        },
       ]);
-    } else if (cmdLower === 'skills') {
-      this.lines.update(l => [
-        ...l,
-        { text: 'Languages:   Java, Python, TypeScript, SQL', type: 'output' },
-        { text: 'Automation:  Selenium, Playwright, Cypress, Appium', type: 'output' },
+    } else if (normalizedTopic === 'skills') {
+      this.lines.update((lines) => [
+        ...lines,
+        { text: 'Languages: Java, Python, TypeScript, SQL', type: 'output' },
+        { text: 'Automation: Selenium, Playwright, Cypress, Appium', type: 'output' },
         { text: 'API Testing: REST Assured, Postman, SoapUI', type: 'output' },
-        { text: 'CI/CD & Ops: Jenkins, GitHub Actions, Docker, AWS', type: 'output' }
+        { text: 'CI/CD and Ops: Jenkins, GitHub Actions, Docker, AWS', type: 'output' },
       ]);
-    } else if (cmdLower === 'projects') {
-      this.lines.update(l => [
-        ...l,
-        { text: 'Project Highlights (Scroll down to Projects for full visual specs):', type: 'success' },
-        { text: '  1. hybrid-framework-selenium  - Selenium Java framework featuring Page Object Models and ExtentReports.', type: 'output' },
-        { text: '  2. playwright-ci-automation   - Playwright Python parallel suite integrated into GitHub Actions pipelines.', type: 'output' },
-        { text: '  3. rest-assured-boilerplate   - API regression framework using RestAssured, JUnit 5, and Lombok.', type: 'output' }
+    } else if (normalizedTopic === 'projects') {
+      this.lines.update((lines) => [
+        ...lines,
+        { text: 'Project highlights:', type: 'success' },
+        {
+          text: 'Hybrid Selenium framework with Page Object Models and ExtentReports.',
+          type: 'output',
+        },
+        {
+          text: 'Playwright Python suite with parallel execution in GitHub Actions.',
+          type: 'output',
+        },
+        { text: 'REST Assured API regression framework with JUnit 5 and Lombok.', type: 'output' },
       ]);
-    } else if (cmdLower === 'contact') {
-      this.lines.update(l => [
-        ...l,
-        { text: 'Ready to commit some code?', type: 'success' },
-        { text: 'Scroll down to the Contact Section and write your message inside the Commit Form!', type: 'output' }
+    } else if (normalizedTopic === 'contact') {
+      this.lines.update((lines) => [
+        ...lines,
+        { text: 'Ready to connect?', type: 'success' },
+        {
+          text: 'Scroll down to the Contact section and send a message from the form.',
+          type: 'output',
+        },
       ]);
-    } else if (cmdLower === 'theme') {
+    } else if (normalizedTopic === 'theme') {
       this.workspaceService.toggleTheme();
-      this.lines.update(l => [...l, { text: `Theme toggled to: ${this.workspaceService.theme()}`, type: 'success' }]);
-    } else if (cmdLower === 'clear') {
+      this.lines.update((lines) => [
+        ...lines,
+        { text: `Theme changed to ${this.workspaceService.theme()} mode.`, type: 'success' },
+      ]);
+    } else if (normalizedTopic === 'clear') {
       this.lines.set([]);
     } else {
-      this.lines.update(l => [
-        ...l,
-        { text: `Command not found: ${command}. Type 'help' for options.`, type: 'error' }
+      this.lines.update((lines) => [
+        ...lines,
+        { text: `I did not recognize "${command}". Try help for available topics.`, type: 'error' },
       ]);
     }
   }
 
   private runInitialAnimation(): void {
-    let charIndex = 0;
-    this.lines.set([{ text: this.promptPrefix, type: 'input' }]);
+    this.lines.set([]);
+    let lineIndex = 0;
 
-    const typeTimer = setInterval(() => {
-      if (charIndex < this.initialCommand.length) {
-        // Append character to the last input line
-        const typedText = this.promptPrefix + this.initialCommand.slice(0, charIndex + 1);
-        this.lines.update(lines => {
-          const updated = [...lines];
-          updated[updated.length - 1] = { text: typedText, type: 'input' };
-          return updated;
-        });
-        charIndex++;
-      } else {
-        clearInterval(typeTimer);
-        setTimeout(() => {
-          // Output the responses lines
-          this.initialOutput.forEach(lineText => {
-            this.lines.update(l => [...l, { text: lineText, type: 'output' }]);
-          });
-          this.isTyping.set(false);
-          // Wait a tick and focus input
-          setTimeout(() => this.focusInput(), 100);
-        }, 300);
+    const revealTimer = setInterval(() => {
+      if (lineIndex < this.initialOutput.length) {
+        this.lines.update((lines) => [
+          ...lines,
+          { text: this.initialOutput[lineIndex], type: 'output' },
+        ]);
+        lineIndex++;
+        return;
       }
-    }, 120);
+
+      clearInterval(revealTimer);
+      this.isTyping.set(false);
+      setTimeout(() => this.focusInput(), 100);
+    }, 110);
   }
 
   private scrollToBottom(): void {

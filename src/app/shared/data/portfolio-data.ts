@@ -39,7 +39,7 @@ export const PORTFOLIO_DATA = {
       "javaClass": "public class SystemEngineer extends Role {\n    String company = \"Tata Consultancy Services Ltd\";\n    String duration = \"Oct 2022 – Present\";\n    List<String> responsibilities = List.of(\n        \"Automated 400+ regression test cases for Corporate Actions\",\n        \"Reduced manual testing effort by approximately 40%\",\n        \"Validated SWIFT Payments and ISO15022/ISO20022 messages\",\n        \"Tested API endpoints using Postman & Python Requests\"\n    );\n}"
     },
     {
-      "company": "Intesa Sanpaolo Bank (TCS Client)",
+      "company": "Intesa San Paolo Bank (TCS Client)",
       "role": "Automation Test Engineer",
       "duration": "Oct 2023 – Present",
       "responsibilities": [
@@ -52,7 +52,7 @@ export const PORTFOLIO_DATA = {
         "Prepared Solution Design Documents (SDD), test cases, test scenarios, requirement analysis documents, and test execution reports."
       ],
       "techStack": ["Python", "Selenium WebDriver", "Pytest", "ISO20022 (MX)", "SQL", "JIRA"],
-      "javaClass": "public class AutomationTestEngineer extends Role {\n    String client = \"Intesa Sanpaolo Bank\";\n    String duration = \"Oct 2023 – Present\";\n    List<String> responsibilities = List.of(\n        \"Designed automated scripts using Selenium WebDriver & Pytest\",\n        \"Validated ISO15022 & ISO20022 financial messages\",\n        \"Performed API testing and SQL backend data validations\",\n        \"Prepared Solution Design Documents (SDD) & test reports\"\n    );\n}"
+      "javaClass": "public class AutomationTestEngineer extends Role {\n    String client = \"Intesa San Paolo Bank\";\n    String duration = \"Oct 2023 – Present\";\n    List<String> responsibilities = List.of(\n        \"Designed automated scripts using Selenium WebDriver & Pytest\",\n        \"Validated ISO15022 & ISO20022 financial messages\",\n        \"Performed API testing and SQL backend data validations\",\n        \"Prepared Solution Design Documents (SDD) & test reports\"\n    );\n}"
     },
     {
       "company": "JP Morgan Chase Bank (TCS Client)",

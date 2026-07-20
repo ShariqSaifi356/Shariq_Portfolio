@@ -59,6 +59,6 @@
 }
 
 /* Logo text in light mode */
-.light .text-\[#0F172A\] {
+.light .custom-text{
   color: #0f172a;
 }

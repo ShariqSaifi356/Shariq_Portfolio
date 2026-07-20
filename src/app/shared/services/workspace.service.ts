@@ -85,11 +85,11 @@ export class WorkspaceService {
     if (theme === 'dark') {
       root.classList.add('dark');
       root.classList.remove('light');
-      root.style.backgroundColor = '#0F172A';
+      root.style.backgroundColor = '#0B0A0F';
     } else {
       root.classList.add('light');
       root.classList.remove('dark');
-      root.style.backgroundColor = '#F8FAFC';
+      root.style.backgroundColor = '#FBF8EB';
     }
   }
 }

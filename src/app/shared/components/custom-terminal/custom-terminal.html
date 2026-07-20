@@ -1,13 +1,13 @@
 <div
-  class="w-full max-w-2xl mx-auto rounded-xl bg-white/85 dark:bg-slate-950/85 shadow-2xl overflow-hidden border border-blue-200 dark:border-blue-500/20 text-xs sm:text-sm text-slate-700 dark:text-slate-300 transition-all duration-300 backdrop-blur-xl"
+  class="mx-auto w-full max-w-full sm:max-w-2xl min-w-0 rounded-xl bg-[#FBF8EB]/90 dark:bg-[#0B0A0F]/85 shadow-2xl overflow-hidden border border-amber-200/50 dark:border-violet-500/20 text-xs sm:text-sm text-slate-700 dark:text-slate-300 transition-all duration-300 backdrop-blur-xl"
   (click)="focusInput()"
 >
   <div
-    class="bg-slate-100/90 dark:bg-slate-900/80 px-4 py-3 flex items-center justify-between border-b border-slate-200 dark:border-white/5 select-none"
+    class="bg-[#F3EFD8]/90 dark:bg-[#16151F]/80 px-4 py-3 flex items-center justify-between gap-3 border-b border-amber-200/40 dark:border-white/5 select-none"
   >
-    <div class="flex items-center gap-2 text-primary font-semibold">
+    <div class="flex min-w-0 items-center gap-2 text-primary font-semibold">
       <span
-        class="flex h-7 w-7 items-center justify-center rounded-md bg-blue-500/10 border border-blue-500/20"
+        class="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-blue-500/10 border border-blue-500/20"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -29,19 +29,20 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="m15.75 18.25 1.5 1.5 3-3" />
         </svg>
       </span>
-      <span>QA Workspace</span>
+      <span class="min-w-0 truncate">QA Workspace</span>
     </div>
-    <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold">
+    <span class="hidden sm:inline text-xs text-slate-500 dark:text-slate-400 font-semibold">
       Interactive overview
     </span>
   </div>
 
   <div
     #terminalBody
-    class="p-4 sm:p-6 h-80 sm:h-96 overflow-y-auto space-y-2 select-text bg-slate-50/80 dark:bg-slate-950/40"
+    class="p-4 sm:p-6 h-72 sm:h-96 overflow-y-auto overflow-x-hidden space-y-2 select-text bg-[#F7F4E4]/85 dark:bg-[#0B0A0F]/40"
   >
     @for (line of lines(); track $index) {
       <div
+        class="break-words"
         [ngClass]="{
           'text-primary font-semibold': line.type === 'input',
           'text-slate-800 dark:text-slate-200': line.type === 'output',
@@ -55,7 +56,7 @@
 
     @if (!isTyping()) {
       <form (submit)="handleCommand($event)" class="flex items-center w-full pt-2">
-        <div class="relative flex-grow flex items-center">
+        <div class="relative flex-grow min-w-0 flex items-center">
           <input
             #cmdInput
             type="text"
@@ -66,8 +67,8 @@
             autocorrect="off"
             autocapitalize="none"
             spellcheck="false"
-            placeholder="Explore skills, projects, contact, theme, or clear"
-            class="h-10 w-full rounded-md border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-900 px-3 pr-9 text-slate-800 dark:text-slate-200 outline-hidden focus:border-primary focus:ring-2 focus:ring-primary/20 selection:bg-blue-500/40"
+            placeholder="skills, projects, contact, theme…"
+            class="h-10 w-full min-w-0 rounded-md border border-amber-200/60 dark:border-white/10 bg-[#FBF8EB] dark:bg-[#16151F] px-3 pr-9 text-slate-800 dark:text-slate-200 outline-hidden focus:border-primary focus:ring-2 focus:ring-primary/20 selection:bg-violet-500/40"
             aria-label="QA workspace input"
           />
           <span

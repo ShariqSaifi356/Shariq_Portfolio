@@ -123,17 +123,17 @@
 
 /* Light mode: Projects section - Code mockup background lighter */
 .light section#projects > div > div:first-child .h-44 {
-  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important;
+  background: linear-gradient(135deg, #EDE8CF 0%, #E0D9B8 100%) !important;
 }
 
 /* Ensure the gradient override works */
 .light [class*='from-slate-900'][class*='to-slate-950'] {
-  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%) !important;
+  background: linear-gradient(135deg, #EDE8CF 0%, #E0D9B8 100%) !important;
 }
 
 /* Light mode: Keep details/summary text colorful */
 .light section#projects details summary.text-primary {
-  color: #3b82f6 !important;
+  color: #4F5FD6 !important;
 }
 
 .light section#projects details summary.text-accent {

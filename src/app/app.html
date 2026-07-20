@@ -1,23 +1,24 @@
-<div 
-  class="min-h-screen transition-colors duration-300" 
-  [class.dark]="workspaceService.theme() === 'dark'" 
+<div
+  class="min-h-svh w-full max-w-[100vw] overflow-x-clip transition-colors duration-300"
+  [class.dark]="workspaceService.theme() === 'dark'"
   [class.light]="workspaceService.theme() === 'light'"
 >
   <!-- Ambient Cursor Glow -->
-  <div class="cursor-glow-bg"></div>
+  <div class="cursor-glow-bg" aria-hidden="true"></div>
 
   <!-- Sticky Header Navbar -->
   <app-header></app-header>
 
   <!-- Main View Container -->
-  <main class="w-full">
+  <main class="w-full max-w-[100vw] overflow-x-clip">
     <router-outlet></router-outlet>
   </main>
 
   <!-- Back to Top Button -->
-  <button 
-    (click)="scrollToTop()" 
-    class="fixed bottom-6 right-6 z-50 p-3 rounded-full glass border border-blue-500/20 text-primary hover:text-white hover:bg-primary/20 hover:border-primary transition-all duration-500 shadow-xl cursor-pointer transform hover:scale-110"
+  <button
+    type="button"
+    (click)="scrollToTop()"
+    class="fixed bottom-4 right-3 z-50 p-2.5 sm:bottom-6 sm:right-6 sm:p-3 rounded-full glass border border-blue-500/20 text-primary hover:text-white hover:bg-primary/20 hover:border-primary transition-all duration-500 shadow-xl cursor-pointer transform hover:scale-110"
     [class.opacity-0]="!showBackToTop()"
     [class.pointer-events-none]="!showBackToTop()"
     [class.translate-y-4]="!showBackToTop()"
@@ -35,11 +36,11 @@
 
   <!-- Global Snackbar Toast Notification -->
   @if (workspaceService.snackbarMessage(); as msg) {
-    <div class="fixed bottom-6 right-6 z-50 glass border border-blue-500/20 bg-slate-900/95 text-white rounded-lg shadow-2xl px-5 py-3 flex items-center space-x-3 transition-all duration-300 animate-pulse-slow">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 text-accent animate-bounce">
+    <div class="fixed bottom-16 left-3 right-3 sm:bottom-6 sm:left-auto sm:right-20 sm:max-w-sm z-50 glass border border-blue-500/20 bg-slate-900/95 text-white rounded-lg shadow-2xl px-3 sm:px-5 py-3 flex items-center gap-3 transition-all duration-300 animate-pulse-slow max-w-[calc(100vw-1.5rem)]">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 shrink-0 text-accent animate-bounce">
         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
-      <span class="font-sans text-xs sm:text-sm font-semibold select-none text-slate-100">{{ msg }}</span>
+      <span class="min-w-0 break-words font-sans text-xs sm:text-sm font-semibold select-none text-slate-100">{{ msg }}</span>
     </div>
   }
 </div>

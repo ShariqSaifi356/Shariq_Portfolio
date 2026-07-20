@@ -1,22 +1,22 @@
 <div
-  class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-28 pb-10 sm:pb-16 space-y-16 sm:space-y-36"
+  class="mx-auto w-full max-w-7xl overflow-x-clip px-3 pt-20 pb-10 sm:px-6 sm:pt-28 sm:pb-16 md:pt-28 lg:px-8 space-y-12 sm:space-y-16 md:space-y-20 lg:space-y-32"
 >
   <!-- ==================== HERO SECTION ==================== -->
   <section
     id="home"
-    class="min-h-[80vh] flex flex-col justify-center items-center lg:grid lg:grid-cols-12 gap-8 sm:gap-12 pt-6 sm:pt-12"
+    class="min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100svh-4rem)] md:min-h-[80vh] flex flex-col justify-center items-center lg:grid lg:grid-cols-12 gap-6 sm:gap-8 md:gap-10 lg:gap-12 pt-4 sm:pt-8 md:pt-12"
   >
     <!-- Left Column: Intro text -->
-    <div class="lg:col-span-6 space-y-6 sm:space-y-8 text-center lg:text-left">
+    <div class="w-full min-w-0 lg:col-span-6 space-y-6 sm:space-y-8 text-center lg:text-left">
       <div
-        class="inline-flex items-center space-x-2 px-3 py-1 rounded-full glass border border-blue-500/20 text-xs font-mono text-primary animate-pulse-slow"
+        class="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full glass border border-blue-500/20 px-3 py-1 text-center text-[11px] sm:text-xs font-mono text-primary animate-pulse-slow"
       >
-        <span class="w-2 h-2 rounded-full bg-accent"></span>
+        <span class="h-2 w-2 shrink-0 rounded-full bg-accent"></span>
         <span>Available for Automation Projects</span>
       </div>
 
       <h1
-        class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight select-none"
+        class="text-[1.65rem] leading-snug sm:text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight sm:leading-tight select-none break-words"
       >
         Hi, I'm
         <span
@@ -25,7 +25,7 @@
         >
         <br />
         <span
-          class="text-xl sm:text-2xl lg:text-3xl text-slate-400 font-mono font-medium block mt-2"
+          class="text-base sm:text-2xl lg:text-3xl text-slate-400 font-mono font-medium block mt-2 break-words"
           >{{ personal.title }}</span
         >
       </h1>
@@ -60,13 +60,13 @@
     </div>
 
     <!-- Right Column: Interactive Terminal -->
-    <div class="lg:col-span-6 w-full flex justify-center lg:justify-end animate-float">
-      <app-custom-terminal class="w-full"></app-custom-terminal>
+    <div class="lg:col-span-6 w-full min-w-0 flex justify-center lg:justify-end animate-float">
+      <app-custom-terminal class="block w-full max-w-full"></app-custom-terminal>
     </div>
   </section>
 
   <!-- ==================== ABOUT ME SECTION ==================== -->
-  <section id="about" class="scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
+  <section id="about" class="scroll-mt-20 sm:scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
         <span class="text-primary"></span>About Me<span class="text-primary">/</span>
@@ -77,7 +77,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
       <!-- Left Column: Technical highlights card -->
       <div
-        class="lg:col-span-4 rounded-xl glass-premium p-6 border border-blue-500/20 shadow-xl flex flex-col justify-between select-none"
+        class="lg:col-span-4 min-w-0 rounded-xl glass-premium p-4 sm:p-6 border border-blue-500/20 shadow-xl flex flex-col justify-between select-none"
       >
         <div class="space-y-4">
           <div
@@ -129,7 +129,7 @@
 
       <!-- Right Column: Visual Bio description and Interests -->
       <div
-        class="lg:col-span-8 flex flex-col justify-between rounded-xl glass p-6 sm:p-8 border border-white/5 shadow-2xl"
+        class="lg:col-span-8 min-w-0 flex flex-col justify-between rounded-xl glass p-4 sm:p-6 md:p-8 border border-white/5 shadow-2xl"
       >
         <div class="space-y-4">
           <h3
@@ -185,7 +185,7 @@
   </section>
 
   <!-- ==================== EXPERIENCE SECTION ==================== -->
-  <section id="experience" class="scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
+  <section id="experience" class="scroll-mt-20 sm:scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
         <span class="text-primary"></span>Work History<span class="text-primary">/</span>
@@ -193,14 +193,14 @@
       <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
     </div>
 
-    <div class="max-w-3xl mx-auto w-full flex flex-col justify-center space-y-6 sm:space-y-8">
-      <div class="relative pl-6 sm:pl-8 border-l border-blue-500/20 space-y-8 sm:space-y-12">
+    <div class="max-w-3xl mx-auto w-full min-w-0 overflow-x-clip flex flex-col justify-center space-y-6 sm:space-y-8">
+      <div class="relative ml-3 sm:ml-4 pl-8 sm:pl-10 border-l border-blue-500/20 space-y-8 sm:space-y-12">
         @for (job of experiences(); track job.company; let idx = $index) {
-          <div class="relative group">
-            <!-- Timeline indicator node -->
+          <div class="relative group min-w-0">
+            <!-- Timeline indicator node (centered on rail — no horizontal overflow) -->
             <div
-              (click)="toggleExperience(idx)"
-              class="absolute -left-[35px] sm:-left-[43px] top-1.5 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-slate-900 flex items-center justify-center cursor-pointer transition-all duration-300 border border-blue-500/30 group-hover:border-primary group-hover:shadow-[0_0_8px_#3B82F6] z-10"
+              (click)="toggleExperience(idx); $event.stopPropagation()"
+              class="absolute left-0 top-1.5 -translate-x-1/2 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-slate-900 flex items-center justify-center cursor-pointer transition-all duration-300 border border-blue-500/30 group-hover:border-primary group-hover:shadow-[0_0_8px_#7C8CFF] z-10"
               [ngClass]="
                 job.expanded
                   ? 'bg-primary text-white scale-110 border-primary'
@@ -242,7 +242,7 @@
 
             <!-- Main timeline card container -->
             <div
-              class="rounded-xl glass border p-5 sm:p-6 transition-all duration-300 cursor-pointer"
+              class="min-w-0 rounded-xl glass border p-4 sm:p-5 md:p-6 transition-all duration-300 cursor-pointer"
               (click)="toggleExperience(idx)"
               [ngClass]="
                 job.expanded
@@ -255,11 +255,11 @@
               >
                 <div>
                   <h3
-                    class="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors duration-300"
+                    class="break-words text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors duration-300"
                   >
                     {{ job.role }}
                   </h3>
-                  <p class="text-xs sm:text-sm font-semibold text-accent font-mono">
+                  <p class="break-words text-xs sm:text-sm font-semibold text-accent font-mono">
                     {{ job.company }}
                   </p>
                 </div>
@@ -273,7 +273,7 @@
               <!-- Expanded details pane -->
               <div
                 class="transition-all duration-500 ease-in-out overflow-hidden"
-                [ngClass]="job.expanded ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0'"
+                [ngClass]="job.expanded ? 'max-h-[900px] opacity-100 mt-4' : 'max-h-0 opacity-0'"
               >
                 <ul
                   class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 list-disc list-inside leading-relaxed font-sans"
@@ -304,7 +304,7 @@
   </section>
 
   <!-- ==================== SKILLS SECTION ==================== -->
-  <section id="skills" class="scroll-mt-24 space-y-6">
+  <section id="skills" class="scroll-mt-20 sm:scroll-mt-24 space-y-6">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
         <span class="text-primary"></span>Skills<span class="text-primary">/</span>
@@ -314,7 +314,7 @@
 
     <!-- Skills Display Area - Squeezed compact layout -->
     <div class="rounded-xl glass border border-white/5 overflow-hidden shadow-xl p-4 sm:p-6">
-      <div class="grid grid-cols-2 md:grid-cols-5 gap-4 select-none font-sans">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 select-none font-sans">
         @for (
           category of [
             'Languages',
@@ -345,7 +345,7 @@
               'skill-card-8': i === 8,
               'skill-card-9': i === 9,
             }"
-            class="rounded-lg border p-3.5 hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between space-y-2.5"
+            class="min-w-0 rounded-lg border p-3.5 hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between space-y-2.5"
           >
             <div>
               <h3
@@ -364,7 +364,7 @@
               <div class="flex flex-wrap gap-1.5">
                 @for (skill of skillsData[category]; track skill) {
                   <span
-                    class="px-2 py-0.5 rounded text-[10px] sm:text-xs font-mono border skill-card-skill"
+                    class="min-w-0 break-words px-2 py-0.5 rounded text-[10px] sm:text-xs font-mono border skill-card-skill"
                   >
                     {{ skill }}
                   </span>
@@ -378,7 +378,7 @@
   </section>
 
   <!-- ==================== PROJECTS SECTION ==================== -->
-  <section id="projects" class="scroll-mt-24 space-y-6 sm:space-y-8">
+  <section id="projects" class="scroll-mt-20 sm:scroll-mt-24 space-y-6 sm:space-y-8">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
         <span class="text-primary"></span>Projects<span class="text-primary">/</span>
@@ -387,44 +387,46 @@
     </div>
 
     <!-- Projects Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
       @for (project of projects(); track project.name) {
         <div
-          class="rounded-xl glass border border-white/5 overflow-hidden flex flex-col justify-between hover:border-primary/20 hover:scale-[1.01] hover:shadow-[0_10px_25px_rgba(59,130,246,0.15)] transition-all duration-300"
+          class="min-w-0 rounded-xl glass border border-white/5 overflow-hidden flex flex-col justify-between hover:border-primary/20 hover:scale-[1.01] hover:shadow-[0_10px_25px_rgba(59,130,246,0.15)] transition-all duration-300"
         >
           <!-- Visual Decorative Mockup Card -->
           <div
             class="h-44 bg-gradient-to-br from-slate-900 to-slate-950 border-b border-white/5 relative flex flex-col justify-between p-4 font-mono select-none"
           >
             <div class="flex items-center justify-between text-[10px] text-slate-500">
-              <span>test_suite.py</span>
-              <span class="text-accent">● RUNNING</span>
+              <span>Automation Health</span>
+              <span class="text-accent">ACTIVE</span>
             </div>
 
-            <!-- Terminal Output Animation (Static snapshot styled mock) -->
+            <!-- QA dashboard snapshot -->
             <div
               class="text-[10px] text-slate-400 space-y-1 mt-2 flex-grow overflow-hidden select-none"
             >
-              <div class="text-primary font-bold">pytest --tb=short -v</div>
-              <div class="text-slate-600">platform linux -- Python 3.10</div>
-              <div class="text-slate-500">collected 48 tests</div>
-              <div class="flex gap-2">
-                <span class="text-accent">PASSED</span>
-                <span class="text-slate-400">test_auth_states.py::test_login</span>
+              <div class="text-primary font-bold">Release confidence</div>
+              <div class="text-slate-600">48 scenarios monitored</div>
+              <div class="text-slate-500">Fast feedback across critical journeys</div>
+              <div class="flex min-w-0 gap-2">
+                <span class="text-accent">PASS</span>
+                <span class="min-w-0 truncate text-slate-400">Authentication journey</span>
               </div>
-              <div class="flex gap-2">
-                <span class="text-accent">PASSED</span>
-                <span class="text-slate-400">test_api_gateways.py::test_headers</span>
+              <div class="flex min-w-0 gap-2">
+                <span class="text-accent">PASS</span>
+                <span class="min-w-0 truncate text-slate-400">API contract coverage</span>
               </div>
             </div>
 
-            <!-- Tech badges overlay -->
+            <!-- Tech badges overlay — colors match Skills tags -->
             <div class="flex flex-wrap gap-1.5 mt-2">
               @for (tech of project.techStack.slice(0, 2); track tech) {
-                <span
-                  class="px-2 py-0.5 rounded-md text-[9px] bg-primary/10 text-primary border border-blue-500/10"
-                >
-                  {{ tech }}
+                <span class="contents" [ngClass]="getExperienceSkillCategoryClass(tech)">
+                  <span
+                    class="px-2 py-0.5 rounded-md text-[9px] font-mono font-semibold border skill-card-skill"
+                  >
+                    {{ tech }}
+                  </span>
                 </span>
               }
             </div>
@@ -535,12 +537,14 @@
             </div>
 
             <!-- Bottom Action links -->
-            <div class="flex items-center gap-4 pt-4 border-t border-white/5 font-sans">
+            <div
+              class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4 border-t border-white/5 font-sans"
+            >
               <a
                 [href]="project.github"
                 target="_blank"
                 rel="noopener"
-                class="flex-1 py-2.5 rounded-lg glass border border-blue-500/10 text-primary text-center font-medium text-xs hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+                class="flex-1 py-2.5 px-3 rounded-lg glass border border-blue-500/10 text-primary text-center font-medium text-xs hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
               >
                 Code Repository
               </a>
@@ -548,7 +552,7 @@
                 [href]="project.demo"
                 target="_blank"
                 rel="noopener"
-                class="flex-1 py-2.5 rounded-lg bg-primary hover:bg-blue-600 text-white text-center font-medium text-xs shadow-md shadow-blue-500/15 transition-all duration-300"
+                class="flex-1 py-2.5 px-3 rounded-lg bg-primary hover:bg-blue-600 text-white text-center font-medium text-xs shadow-md shadow-blue-500/15 transition-all duration-300"
               >
                 Live Demo
               </a>
@@ -560,7 +564,7 @@
   </section>
 
   <!-- ==================== CERTIFICATIONS SECTION ==================== -->
-  <section id="certifications" class="scroll-mt-24 space-y-6 sm:space-y-8">
+  <section id="certifications" class="scroll-mt-20 sm:scroll-mt-24 space-y-6 sm:space-y-8">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
         <span class="text-primary"></span>Certifications<span class="text-primary">/</span>
@@ -569,7 +573,7 @@
     </div>
 
     <!-- Collectible Certification Grids -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-sans">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 font-sans">
       @for (cert of certifications(); track cert.name) {
         <div
           class="rounded-xl glass border border-white/5 p-5 hover:border-primary/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-500 relative overflow-hidden group select-none flex flex-col justify-between gap-4"
@@ -596,10 +600,10 @@
           </div>
 
           <div
-            class="relative z-10 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-500"
+            class="relative z-10 pt-3 border-t border-white/5 flex items-center justify-between gap-3 text-[10px] font-mono text-slate-500"
           >
-            <span>ID: {{ cert.id }}</span>
-            <span class="text-accent font-semibold">{{ cert.date }}</span>
+            <span class="min-w-0 truncate">ID: {{ cert.id }}</span>
+            <span class="shrink-0 text-accent font-semibold">{{ cert.date }}</span>
           </div>
         </div>
       }
@@ -607,7 +611,7 @@
   </section>
 
   <!-- ==================== CONTACT SECTION ==================== -->
-  <section id="contact" class="scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
+  <section id="contact" class="scroll-mt-20 sm:scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
     <div class="text-center lg:text-left">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
         <span class="text-primary"></span>Contact<span class="text-primary">/</span>
@@ -616,7 +620,7 @@
     </div>
 
     <!-- Squeezed email dashboard card -->
-    <div class="max-w-2xl mx-auto text-center space-y-6">
+    <div class="max-w-2xl mx-auto w-full text-center space-y-6">
       <p
         class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-md mx-auto leading-relaxed"
       >
@@ -630,10 +634,10 @@
           workspaceService.showSnackbar('Email address copied to clipboard!');
           copyEmailToClipboard()
         "
-        class="inline-flex items-center space-x-4 px-6 py-4 rounded-xl glass border border-blue-500/20 hover:border-primary/40 hover:bg-slate-900/10 cursor-pointer shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 group"
+        class="inline-flex w-full max-w-full sm:max-w-md md:max-w-lg items-center gap-3 sm:gap-4 px-3 sm:px-6 py-3.5 sm:py-4 rounded-xl glass border border-blue-500/20 hover:border-primary/40 hover:bg-slate-900/10 cursor-pointer shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 group"
       >
         <div
-          class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:scale-105 transition-transform duration-300"
+          class="w-10 h-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:scale-105 transition-transform duration-300"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -651,17 +655,17 @@
           </svg>
         </div>
 
-        <div class="text-left font-mono">
+        <div class="min-w-0 flex-1 text-left font-mono">
           <p class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Email Address</p>
           <p
-            class="text-sm sm:text-base text-slate-900 dark:text-slate-100 font-semibold group-hover:text-primary transition-colors duration-300"
+            class="break-all text-sm sm:text-base text-slate-900 dark:text-slate-100 font-semibold group-hover:text-primary transition-colors duration-300"
           >
             {{ personal.email }}
           </p>
         </div>
 
         <div
-          class="w-8 h-8 rounded-md bg-slate-950/20 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-primary transition-colors duration-300 ml-4"
+          class="w-8 h-8 shrink-0 rounded-md bg-slate-950/20 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-primary transition-colors duration-300"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

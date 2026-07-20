@@ -1,176 +1,184 @@
-<header
-  class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 glass border-b border-slate-900/10 dark:border-white/5"
->
-  <div
-    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between"
-  >
-    <!-- Brand Logo -->
-    <div class="flex items-center space-x-2 cursor-pointer" (click)="scrollToSection('home')">
-      <span class="text-xl sm:text-2xl font-mono font-bold tracking-tight text-glow">
+<header class="site-header">
+  <div class="nav-shell">
+    <!-- Brand pill -->
+    <button
+      type="button"
+      class="nav-pill nav-pill-brand"
+      (click)="scrollToSection('home')"
+      aria-label="Go to home"
+    >
+      <span class="brand-mark text-glow">
         <span class="text-primary font-bold">&lt;</span>
-        <span class="custom-text dark:text-[#F8FAFC]">shariq</span>
+        <span class="custom-text dark:text-[#E8E6EF]">shariq</span>
         <span class="text-accent font-semibold">.qa</span>
         <span class="text-primary font-bold">/&gt;</span>
       </span>
-    </div>
+    </button>
 
-    <!-- Desktop Navigation Links -->
-    <nav class="hidden md:flex items-center space-x-1">
+    <!-- Desktop nav links pill -->
+    <nav class="nav-pill nav-pill-links" aria-label="Primary">
       @for (item of navItems; track item.id) {
         <button
+          type="button"
           (click)="scrollToSection(item.id)"
-          class="px-4 py-2 text-sm font-medium transition-all duration-300 rounded-md cursor-pointer"
-          [class.text-primary]="workspaceService.activeSection() === item.id"
-          [class.active-nav-indicator]="workspaceService.activeSection() === item.id"
+          class="nav-link-btn"
+          [class.is-active]="workspaceService.activeSection() === item.id"
           [class.text-muted-dark]="
             workspaceService.activeSection() !== item.id && workspaceService.theme() === 'dark'
           "
           [class.text-muted-light]="
             workspaceService.activeSection() !== item.id && workspaceService.theme() === 'light'
           "
-          [class.hover:text-primary]="workspaceService.activeSection() !== item.id"
         >
           {{ item.label }}
         </button>
       }
     </nav>
 
-    <!-- Header Actions (Theme Toggle & Mobile menu trigger) -->
-    <div class="flex items-center space-x-4">
-      <!-- QA Inspector Mode Toggle -->
-      <button
-        (click)="workspaceService.toggleInspector()"
-        class="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border text-xs font-mono font-medium transition-all duration-300 cursor-pointer"
-        [ngClass]="
-          workspaceService.inspectorActive()
-            ? 'bg-primary/20 text-primary border-primary shadow-[0_0_8px_rgba(59,130,246,0.2)]'
-            : 'glass border-blue-500/10 text-slate-400 hover:text-primary hover:border-primary/30'
-        "
-        aria-label="Toggle Inspector Mode"
-      >
-        <span>🕵️ Inspector:</span>
-        @if (workspaceService.inspectorActive()) {
-          @if (workspaceService.inspectorTimerPaused()) {
-            <span class="font-bold text-accent">PINNED</span>
+    <!-- Actions pill: theme + hamburger (mobile) / theme + inspector (desktop) -->
+    <div class="nav-actions-wrap">
+      <div class="nav-pill nav-pill-actions">
+        <!-- Inspector (large screens) -->
+        <button
+          data-inspector-control
+          type="button"
+          (click)="workspaceService.toggleInspector()"
+          class="nav-action-btn nav-inspector-btn"
+          [class.is-on]="workspaceService.inspectorActive()"
+          aria-label="Toggle Inspector Mode"
+        >
+          <span class="hidden xl:inline">Inspector:</span>
+          @if (workspaceService.inspectorActive()) {
+            @if (workspaceService.inspectorTimerPaused()) {
+              <span class="font-bold text-accent">PINNED</span>
+            } @else {
+              <span class="font-bold text-accent"
+                >ON ({{ workspaceService.inspectorTimeLeft() }}s)</span
+              >
+            }
           } @else {
-            <span class="font-bold text-accent"
-              >ON ({{ workspaceService.inspectorTimeLeft() }}s)</span
+            <span class="font-bold opacity-60">OFF</span>
+          }
+        </button>
+
+        @if (workspaceService.inspectorActive() && !workspaceService.inspectorTimerPaused()) {
+          <button
+            data-inspector-control
+            type="button"
+            (click)="workspaceService.extendInspectorTime(60)"
+            class="nav-action-btn nav-inspector-btn"
+            aria-label="Extend Inspector Time"
+          >
+            +60s
+          </button>
+        }
+
+        <!-- Theme toggle -->
+        <button
+          data-inspector-control
+          type="button"
+          (click)="workspaceService.toggleTheme()"
+          class="nav-action-btn"
+          aria-label="Toggle Theme"
+        >
+          @if (workspaceService.theme() === 'dark') {
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5"
+              aria-hidden="true"
             >
-          }
-        } @else {
-          <span class="font-bold text-slate-500">OFF</span>
-        }
-      </button>
-
-      <!-- Extend Inspector Time Button -->
-      @if (workspaceService.inspectorActive() && !workspaceService.inspectorTimerPaused()) {
-        <button
-          (click)="workspaceService.extendInspectorTime(60)"
-          class="hidden sm:inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg border border-blue-500/10 glass text-[10px] font-mono font-semibold text-primary hover:text-white hover:bg-primary/20 hover:border-primary/30 transition-all duration-300 cursor-pointer"
-          aria-label="Extend Inspector Time"
-        >
-          <span>+60s</span>
-        </button>
-      }
-
-      <!-- Dark/Light Theme Toggle -->
-      <button
-        (click)="workspaceService.toggleTheme()"
-        class="p-2.5 rounded-lg glass border border-blue-500/10 text-primary hover:text-white hover:bg-primary/20 transition-all duration-300 cursor-pointer"
-        aria-label="Toggle Theme"
-      >
-        @if (workspaceService.theme() === 'dark') {
-          <!-- Sun Icon for Light mode switch -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-5 h-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M12 3v2.25m0 13.5V21M4.22 4.22l1.636 1.636m12.288 12.288l1.636 1.636M3 12h2.25m13.5 0H21M5.856 18.144l1.636-1.636m12.288-12.288l1.636-1.636M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z"
-            />
-          </svg>
-        } @else {
-          <!-- Moon Icon for Dark mode switch -->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-5 h-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-            />
-          </svg>
-        }
-      </button>
-
-      <!-- Mobile Menu Button -->
-      <button
-        (click)="toggleMobileMenu()"
-        class="md:hidden p-2.5 rounded-lg glass border border-blue-500/10 text-primary hover:bg-primary/10 transition-all duration-300 cursor-pointer"
-        aria-label="Open Menu"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="w-6 h-6"
-        >
-          @if (isMobileMenuOpen()) {
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 3v2.25m0 13.5V21M4.22 4.22l1.636 1.636m12.288 12.288l1.636 1.636M3 12h2.25m13.5 0H21M5.856 18.144l1.636-1.636m12.288-12.288l1.636-1.636M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z"
+              />
+            </svg>
           } @else {
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
+              />
+            </svg>
           }
-        </svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile Dropdown Menu -->
-  <div
-    class="md:hidden transition-all duration-500 ease-in-out border-t border-white/5 overflow-hidden"
-    [class.max-h-0]="!isMobileMenuOpen()"
-    [class.max-h-[400px]]="isMobileMenuOpen()"
-  >
-    <div class="px-2 pt-2 pb-4 space-y-1 glass">
-      @for (item of navItems; track item.id) {
-        <button
-          (click)="scrollToSection(item.id)"
-          class="w-full text-left px-4 py-3 rounded-md text-base font-medium transition-all duration-300 cursor-pointer"
-          [class.bg-primary/10]="workspaceService.activeSection() === item.id"
-          [class.text-primary]="workspaceService.activeSection() === item.id"
-          [class.text-muted-dark]="
-            workspaceService.activeSection() !== item.id && workspaceService.theme() === 'dark'
-          "
-          [class.text-muted-light]="
-            workspaceService.activeSection() !== item.id && workspaceService.theme() === 'light'
-          "
-        >
-          {{ item.label }}
         </button>
-      }
+
+        <!-- Hamburger (mobile / tablet only) -->
+        <button
+          data-inspector-control
+          type="button"
+          (click)="toggleMobileMenu($event)"
+          class="mobile-menu-btn nav-action-btn lg:hidden"
+          [attr.aria-expanded]="isMobileMenuOpen()"
+          [attr.aria-controls]="'mobile-nav-panel'"
+          [attr.aria-label]="isMobileMenuOpen() ? 'Close menu' : 'Open menu'"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5 sm:w-6 sm:h-6"
+            aria-hidden="true"
+          >
+            @if (isMobileMenuOpen()) {
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            } @else {
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
+            }
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile dropdown — anchored under actions pill -->
+      <nav
+        id="mobile-nav-panel"
+        class="mobile-nav lg:hidden"
+        [class.is-open]="isMobileMenuOpen()"
+        [attr.aria-hidden]="!isMobileMenuOpen()"
+        aria-label="Mobile"
+      >
+        <div class="mobile-nav-inner">
+          <ul class="mobile-nav-list">
+            @for (item of navItems; track item.id) {
+              <li>
+                <button
+                  type="button"
+                  (click)="scrollToSection(item.id)"
+                  class="mobile-nav-link"
+                  [attr.aria-current]="
+                    workspaceService.activeSection() === item.id ? 'page' : null
+                  "
+                  [class.is-active]="workspaceService.activeSection() === item.id"
+                >
+                  <span class="mobile-nav-link-label">{{ item.label }}</span>
+                </button>
+              </li>
+            }
+          </ul>
+        </div>
+      </nav>
     </div>
   </div>
 
-  <!-- Scroll Progress Bar -->
-  <div
-    class="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-primary to-accent transition-all duration-100 ease-out shadow-[0_0_8px_#3B82F6]"
-    [style.width.%]="scrollProgress()"
-  ></div>
+  <!-- Thin scroll progress -->
+  <div class="nav-progress" [style.width.%]="scrollProgress()" aria-hidden="true"></div>
 </header>

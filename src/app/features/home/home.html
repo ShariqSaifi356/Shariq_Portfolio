@@ -42,7 +42,7 @@
       >
         <button
           (click)="scrollToSection('projects')"
-          class="w-full sm:w-auto px-6 py-3 rounded-lg bg-primary hover:bg-blue-600 text-white font-medium shadow-lg shadow-blue-500/25 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer text-center"
+          class="w-full sm:w-auto px-6 py-3 rounded-full bg-primary hover:bg-blue-600 text-white font-medium shadow-lg shadow-blue-500/25 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer text-center"
         >
           View Projects
         </button>
@@ -52,7 +52,7 @@
           (click)="
             workspaceService.showSnackbar('Downloading Mohammad Shariq Saifi\'s Resume PDF...')
           "
-          class="w-full sm:w-auto px-6 py-3 rounded-lg glass border border-blue-500/20 text-primary hover:text-white hover:bg-primary/10 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer text-center inline-flex items-center justify-center font-medium"
+          class="w-full sm:w-auto px-6 py-3 rounded-full glass border border-blue-500/20 text-primary hover:text-white hover:bg-primary/10 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer text-center inline-flex items-center justify-center font-medium"
         >
           Download Resume
         </a>
@@ -193,11 +193,15 @@
       <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
     </div>
 
-    <div class="max-w-3xl mx-auto w-full min-w-0 overflow-x-clip flex flex-col justify-center space-y-6 sm:space-y-8">
-      <div class="relative ml-3 sm:ml-4 pl-8 sm:pl-10 border-l border-blue-500/20 space-y-8 sm:space-y-12">
+    <div
+      class="max-w-3xl mx-auto w-full min-w-0 overflow-x-clip flex flex-col justify-center space-y-6 sm:space-y-8"
+    >
+      <div
+        class="relative ml-3 sm:ml-4 pl-8 sm:pl-10 border-l border-blue-500/20 space-y-8 sm:space-y-12"
+      >
         @for (job of experiences(); track job.company; let idx = $index) {
           <div class="relative group min-w-0">
-            <!-- Timeline indicator node (centered on rail — no horizontal overflow) -->
+            <!-- Timeline indicator node (centered on rail - no horizontal overflow) -->
             <div
               (click)="toggleExperience(idx); $event.stopPropagation()"
               class="absolute left-0 top-1.5 -translate-x-1/2 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-slate-900 flex items-center justify-center cursor-pointer transition-all duration-300 border border-blue-500/30 group-hover:border-primary group-hover:shadow-[0_0_8px_#7C8CFF] z-10"
@@ -288,7 +292,7 @@
                   @for (tech of job.techStack; track tech) {
                     <span class="contents" [ngClass]="getExperienceSkillCategoryClass(tech)">
                       <span
-                        class="px-2 py-1 rounded-md text-[10px] sm:text-xs font-mono font-semibold border skill-card-skill"
+                        class="px-2 py-1 rounded-full text-[10px] sm:text-xs font-mono font-semibold border skill-card-skill"
                       >
                         {{ tech }}
                       </span>
@@ -314,7 +318,9 @@
 
     <!-- Skills Display Area - Squeezed compact layout -->
     <div class="rounded-xl glass border border-white/5 overflow-hidden shadow-xl p-4 sm:p-6">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 select-none font-sans">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 select-none font-sans"
+      >
         @for (
           category of [
             'Languages',
@@ -364,7 +370,7 @@
               <div class="flex flex-wrap gap-1.5">
                 @for (skill of skillsData[category]; track skill) {
                   <span
-                    class="min-w-0 break-words px-2 py-0.5 rounded text-[10px] sm:text-xs font-mono border skill-card-skill"
+                    class="min-w-0 break-words px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-mono border skill-card-skill"
                   >
                     {{ skill }}
                   </span>
@@ -418,12 +424,12 @@
               </div>
             </div>
 
-            <!-- Tech badges overlay — colors match Skills tags -->
+            <!-- Tech badges overlay - colors match Skills tags -->
             <div class="flex flex-wrap gap-1.5 mt-2">
               @for (tech of project.techStack.slice(0, 2); track tech) {
                 <span class="contents" [ngClass]="getExperienceSkillCategoryClass(tech)">
                   <span
-                    class="px-2 py-0.5 rounded-md text-[9px] font-mono font-semibold border skill-card-skill"
+                    class="px-2 py-0.5 rounded-full text-[9px] font-mono font-semibold border skill-card-skill"
                   >
                     {{ tech }}
                   </span>
@@ -544,7 +550,7 @@
                 [href]="project.github"
                 target="_blank"
                 rel="noopener"
-                class="flex-1 py-2.5 px-3 rounded-lg glass border border-blue-500/10 text-primary text-center font-medium text-xs hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
+                class="flex-1 py-2.5 px-3 rounded-full glass border border-blue-500/10 text-primary text-center font-medium text-xs hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
               >
                 Code Repository
               </a>
@@ -552,7 +558,7 @@
                 [href]="project.demo"
                 target="_blank"
                 rel="noopener"
-                class="flex-1 py-2.5 px-3 rounded-lg bg-primary hover:bg-blue-600 text-white text-center font-medium text-xs shadow-md shadow-blue-500/15 transition-all duration-300"
+                class="flex-1 py-2.5 px-3 rounded-full bg-primary hover:bg-blue-600 text-white text-center font-medium text-xs shadow-md shadow-blue-500/15 transition-all duration-300"
               >
                 Live Demo
               </a>
@@ -573,7 +579,9 @@
     </div>
 
     <!-- Collectible Certification Grids -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 font-sans">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 font-sans"
+    >
       @for (cert of certifications(); track cert.name) {
         <div
           class="rounded-xl glass border border-white/5 p-5 hover:border-primary/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-500 relative overflow-hidden group select-none flex flex-col justify-between gap-4"
@@ -634,7 +642,7 @@
           workspaceService.showSnackbar('Email address copied to clipboard!');
           copyEmailToClipboard()
         "
-        class="inline-flex w-full max-w-full sm:max-w-md md:max-w-lg items-center gap-3 sm:gap-4 px-3 sm:px-6 py-3.5 sm:py-4 rounded-xl glass border border-blue-500/20 hover:border-primary/40 hover:bg-slate-900/10 cursor-pointer shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 group"
+        class="inline-flex w-full max-w-full sm:max-w-md md:max-w-lg items-center gap-3 sm:gap-4 px-3 sm:px-6 py-3.5 sm:py-4 rounded-full glass border border-blue-500/20 hover:border-primary/40 hover:bg-slate-900/10 cursor-pointer shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 group"
       >
         <div
           class="w-10 h-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:scale-105 transition-transform duration-300"
@@ -665,7 +673,7 @@
         </div>
 
         <div
-          class="w-8 h-8 shrink-0 rounded-md bg-slate-950/20 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-primary transition-colors duration-300"
+          class="w-8 h-8 shrink-0 rounded-full bg-slate-950/20 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-primary transition-colors duration-300"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

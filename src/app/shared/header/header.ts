@@ -6,7 +6,7 @@ import { WorkspaceService } from '../services/workspace.service';
   selector: 'app-header',
   imports: [CommonModule],
   templateUrl: './header.html',
-  styleUrl: './header.css'
+  styleUrl: './header.css',
 })
 export class Header implements OnDestroy {
   readonly workspaceService = inject(WorkspaceService);
@@ -20,7 +20,7 @@ export class Header implements OnDestroy {
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
     { id: 'certifications', label: 'Certifications' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'contact', label: 'Contact' },
   ];
 
   ngOnDestroy(): void {
@@ -101,7 +101,7 @@ export class Header implements OnDestroy {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: 'smooth',
       });
 
       this.workspaceService.setActiveSection(sectionId);

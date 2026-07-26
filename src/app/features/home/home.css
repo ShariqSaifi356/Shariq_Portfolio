@@ -123,17 +123,17 @@
 
 /* Light mode: Projects section - Code mockup background lighter */
 .light section#projects > div > div:first-child .h-44 {
-  background: linear-gradient(135deg, #EDE8CF 0%, #E0D9B8 100%) !important;
+  background: linear-gradient(135deg, #ede8cf 0%, #e0d9b8 100%) !important;
 }
 
 /* Ensure the gradient override works */
 .light [class*='from-slate-900'][class*='to-slate-950'] {
-  background: linear-gradient(135deg, #EDE8CF 0%, #E0D9B8 100%) !important;
+  background: linear-gradient(135deg, #ede8cf 0%, #e0d9b8 100%) !important;
 }
 
 /* Light mode: Keep details/summary text colorful */
 .light section#projects details summary.text-primary {
-  color: #4F5FD6 !important;
+  color: #4f5fd6 !important;
 }
 
 .light section#projects details summary.text-accent {
@@ -191,6 +191,10 @@
 .skill-card > * {
   position: relative;
   z-index: 1;
+}
+
+.skill-card-skill {
+  border-radius: 9999px;
 }
 
 .skill-card:hover {

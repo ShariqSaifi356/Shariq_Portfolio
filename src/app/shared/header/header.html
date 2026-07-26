@@ -66,7 +66,7 @@
             data-inspector-control
             type="button"
             (click)="workspaceService.extendInspectorTime(60)"
-            class="nav-action-btn nav-inspector-btn"
+            class="nav-action-btn nav-inspector-btn nav-extend-btn"
             aria-label="Extend Inspector Time"
           >
             +60s
@@ -148,7 +148,7 @@
         </button>
       </div>
 
-      <!-- Mobile dropdown — anchored under actions pill -->
+      <!-- Mobile dropdown - anchored under actions pill -->
       <nav
         id="mobile-nav-panel"
         class="mobile-nav lg:hidden"
@@ -164,9 +164,7 @@
                   type="button"
                   (click)="scrollToSection(item.id)"
                   class="mobile-nav-link"
-                  [attr.aria-current]="
-                    workspaceService.activeSection() === item.id ? 'page' : null
-                  "
+                  [attr.aria-current]="workspaceService.activeSection() === item.id ? 'page' : null"
                   [class.is-active]="workspaceService.activeSection() === item.id"
                 >
                   <span class="mobile-nav-link-label">{{ item.label }}</span>
@@ -178,7 +176,4 @@
       </nav>
     </div>
   </div>
-
-  <!-- Thin scroll progress -->
-  <div class="nav-progress" [style.width.%]="scrollProgress()" aria-hidden="true"></div>
 </header>

@@ -1,87 +1,55 @@
-# Mohammad Shariq Saifi - Professional QA Automation Portfolio
+# Shariq Saifi - SDET & Quality Engineering Portfolio
 
-A premium, creative, and highly interactive single-page landing portfolio website designed specifically for a **QA Automation Engineer / SDET**. Built with a modern aesthetic featuring glassmorphism, custom micro-animations, theme-aware HSL colors (Dark/Light modes), and special QA-focused features.
+Responsive Angular portfolio for Mohammad Shariq Saifi, SDET and quality engineering professional open to opportunities across industries. Banking experience appears in the employment and work examples; the introduction focuses on transferable testing and automation skills.
 
----
+The project root is `Portfolio/`; run the commands below from this folder.
 
-## 🚀 Key Features
+## Run locally
 
-*   **Custom Interactive QA Shell**: An interactive CLI terminal in the Hero section that simulates script loading and accepts custom commands (`help`, `skills`, `projects`, `theme`, `clear`).
-*   **🕵️ QA Inspector Mode**: A creative utility toggled from the navbar. When turned ON, hovering over any page element highlights it with a blue outline and opens a floating control panel displaying:
-    *   XPath
-    *   CSS Selector
-    *   Playwright (TS) Locator
-    *   Selenium (Java) Locator
-    *   Selenium (Python) Locator
-    *   *Includes an auto-shutdown countdown timer (60s) with an option to extend time (+60s).*
-*   **Work History Timeline**: A centered, clean interactive vertical timeline displaying TCS banking client projects, written as Java class syntax, which expands/collapses on click to show responsibilities and stack tags.
-*   **Squeezed Skills Grid**: A compact 5-column technical capability panel detailing test engines, languages, CI/CD tools, databases, and financial messaging standards.
-*   **One-Click Email Copy Card**: A clean contact panel that displays your email address. Clicking copies it to the clipboard and triggers a toast notification.
-*   **Dynamic Theme Toggle**: Flawless transitions between dark mode and light mode, adjusting backgrounds, text, and glass cards instantly.
-*   **Direct Resume Download**: Anchored directly to your actual resume PDF (`public/Mohammad_Shariq_Saifi_Resume.pdf`) with immediate download snackbar feedback.
+Validated with Node.js 24.18.0. Install the locked dependencies, then start the development server:
 
----
-
-## 🛠️ Technology Stack
-
-*   **Framework**: Angular 22 (Standalone Components, Signals state management)
-*   **Styling**: Tailwind CSS v4 (CSS-first engine)
-*   **Fonts**: Inter (UI Text) & JetBrains Mono (Monospaced elements)
-
----
-
-## ⚙️ Installation & Setup
-
-Follow these steps to set up and run the project locally on your machine:
-
-### 1. Prerequisites
-Ensure you have the following installed:
-*   [Node.js](https://nodejs.org/) (Version 18.x or later recommended)
-*   [npm](https://www.npmjs.com/) (bundled with Node.js)
-
-### 2. Clone the Repository
-```bash
-git clone <repository-url>
-cd Shariq_Portfolio
+```sh
+npm ci
+npm start
 ```
 
-### 3. Install Dependencies
-Run the install command to fetch all Angular, Material design, and GSAP libraries:
-```bash
-npm install
-```
+Open http://localhost:4200. To use another port, run `npm start -- --port 4300`.
 
-### 4. Run Development Server
-Start the local watcher:
-```bash
-npm run dev
-```
-*Note: If port 4200 is occupied, you can serve on a custom port:*
-```bash
-npx ng serve --port 4300
-```
-Open your browser and navigate to **`http://localhost:4300/`** (or the port outputted in terminal) to view the live app.
+## Verify and build
 
-### 5. Production Build
-To build the optimized static assets for hosting:
-```bash
+```sh
+npm test -- --watch=false
 npm run build
 ```
-This compiles the application and outputs the build assets into the `dist/Shariq_Portfolio` directory.
 
----
+The production website is generated in `dist/Shariq_Portfolio/browser`.
 
-## 📁 Project Structure & Customization
+## Features
 
-The portfolio is fully database-driven. All personal details, educational history, technical skills, projects, and work highlights are decoupled from components.
+- Responsive navy-and-mint design with light and dark themes; every page load starts in dark mode, with an optional light theme for the current visit.
+- Mobile navigation, keyboard focus states, skip link, and reduced-motion support.
+- Technology logos, filterable skills, expandable experience and work highlights.
+- Interactive Quality Lab: explore UI automation, API/message validation, and CI/release checks through test design, automation, and failure investigation, with keyboard-accessible controls and expandable failure patterns.
+- Direct CV download, email links, and clipboard feedback that handles failures.
+- Content and social links checked against the supplied CV. Work highlights describe professional experience, without claiming public demos or repositories.
 
-To customize the website's content, simply edit the centralized JSON configuration file:
-*   **Database Path**: [portfolio-data.json](file:///home/tanmaysinghx/Developer/Code/Projects/Shariq_Portfolio/src/app/shared/data/portfolio-data.json)
+## Updating content
 
-Updating this JSON automatically propagates changes dynamically throughout the Hero section, About card, Experience timeline, Skills grid, Project overlays, and download anchors without editing any HTML!
+- `src/app/shared/data/portfolio-data.json`: personal details, work experience, work highlights, education, and certifications. The TypeScript export reads this JSON directly.
+- `src/app/features/home/home.ts`: technology logo mapping and filter categories.
+- `src/app/features/home/home.html`: editorial page copy and structure.
+- `src/app/shared/components/quality-lab/`: interactive test-design examples, layout, and controls.
+- `src/styles.css`: shared design tokens and themes.
+- `public/Mohammad_Shariq_Saifi_Resume.pdf`: downloadable CV.
 
----
+Logos are served locally from `public/logos`. Devicon and Simple Icons license files are included alongside the assets. Brand marks belong to their respective owners. Google Fonts supplies Inter and JetBrains Mono, with system-font fallbacks.
+## AI and additional toolkit sections
 
-## 📄 License
-This project is open-source and free to adapt.
-# Shariq_Portfolio
+The AI-assisted automation section reflects the supplied CV's GitHub Copilot and Playwright MCP experience. Education and certifications have separate sections, and the Copilot credential links to the verification URL embedded in the CV. Additional toolkit tiles live in `src/app/shared/components/extended-toolkit`; AI content lives in `src/app/shared/components/ai-expertise`. Additional logo sources are recorded in `public/logos/SOURCES.md`.
+## Live GitHub contributions
+
+The `#github` section fetches the current contribution calendar for the GitHub profile in `portfolio-data.json`. No token or rebuild is required. `GithubContributionsService` reads the public endpoint at `https://github-contributions-api.jogruber.de/v4/<username>?y=last`; the component checks on initial load, every five minutes while the tab is visible, and when returning to a tab whose last check is older than five minutes. Visitors can also refresh manually.
+
+The third-party feed caches data for up to one hour, and GitHub can take longer to record eligible contributions. This reflects the public profile contribution graph, not an instantaneous stream of every push. See [feed documentation](https://github.com/grubersjoe/github-contributions-api) and [GitHub contribution rules](https://docs.github.com/en/account-and-profile/concepts/contributions-on-your-profile).
+
+The calendar validates response data, uses UTC dates for weekday alignment, supports arrow-key exploration and horizontal scrolling on phones, and preserves the last successful response if a subsequent request fails. A failed first load shows a retry button and profile link. Unit tests cover parsing, keyboard navigation, polling cleanup, malformed responses, and refresh recovery. The integration does not expose any GitHub credentials.

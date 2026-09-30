@@ -1,0 +1,59 @@
+/* Light theme surfaces and contrast. */
+
+:root.light
+  app-home
+  :is(.impact-strip, .experience-card, .tool-card, .project-card, .education-card, .certificate) {
+  box-shadow: var(--card-shadow);
+}
+:root.light app-home .experience-side {
+  background: #f0f5f6;
+}
+:root.light app-home .skill-filters button {
+  background: var(--surface);
+  color: var(--text);
+}
+:root.light app-home .skill-filters button.selected {
+  background: var(--accent);
+  color: #fff;
+}
+:root.light app-home :is(.tool-logo, .cert-logo) {
+  background: #f3f6f8;
+  border: 1px solid #e3e9ed;
+}
+:root.light app-home .project-visual {
+  background: radial-gradient(ellipse at 50% 100%, #ccece0, transparent), #edf7f3;
+  color: #245c4f;
+}
+:root.light app-home .visual-label {
+  color: #526570;
+}
+:root.light app-home .flow-diagram > div:first-child {
+  background: #fff;
+  border-color: #a6cdbd;
+}
+:root.light app-home .flow-pair span {
+  background: #ffffffa6;
+  border-color: #a6cdbd;
+}
+:root.light app-home :is(.flow-diagram > span, .flow-result) {
+  color: #276c55;
+}
+:root.light app-home .api-visual {
+  background: radial-gradient(ellipse at 50% 100%, #d8e6fa, transparent), #eff4fc;
+  color: #2d4d79;
+}
+:root.light app-home .xml-bracket {
+  color: #456da1;
+}
+:root.light app-home .message-diagram > div > span {
+  color: #526785;
+}
+:root.light app-home .mini-tags span {
+  border-color: #b7cbe5;
+  background: #ffffffa6;
+}
+:root.light app-home .contact-section {
+  background: radial-gradient(ellipse at 50% 120%, #ccece0, transparent 70%), #fff;
+  border-color: #c4ddd4;
+  box-shadow: var(--card-shadow);
+}

@@ -1,0 +1,120 @@
+﻿<div class="activity-heading">
+  <div>
+    <div class="eyebrow">06 / GITHUB ACTIVITY</div>
+    <h2>Code, practice, and progress.</h2>
+    <p>Explore my repositories and recent contribution activity on GitHub.</p>
+  </div>
+  <a class="profile-link" [href]="service.profileUrl" target="_blank" rel="noopener noreferrer"
+    ><img src="logos/github.svg" alt="" width="20" height="20" />{{ service.username }} ↗</a
+  >
+</div>
+<div class="activity-card" [attr.aria-busy]="loading()">
+  <div class="activity-toolbar">
+    <span class="sync-label"><span class="status-dot"></span> Automatically updated</span
+    ><button class="refresh" (click)="refresh()" [disabled]="loading()">
+      {{ loading() ? 'Checking…' : 'Refresh activity' }} <span aria-hidden="true">↻</span>
+    </button>
+  </div>
+  @if (calendar(); as data) {
+    <div class="activity-stats">
+      <div>
+        <strong>{{ data.total | number }}</strong
+        ><span>contributions in this period</span>
+      </div>
+      <div>
+        <strong>{{ data.activeDays | number }}</strong
+        ><span>active days</span>
+      </div>
+      <div>
+        <strong class="latest-date">{{
+          data.latest
+            ? (data.latest.date + 'T00:00:00Z' | date: 'MMM d, y' : 'UTC')
+            : 'No activity yet'
+        }}</strong
+        ><span>latest contribution</span>
+      </div>
+    </div>
+    <p class="calendar-help" id="calendar-help">
+      Select a day for details. Use arrow keys to explore; swipe horizontally on smaller screens.
+    </p>
+    <div
+      class="calendar-scroll"
+      tabindex="0"
+      role="region"
+      aria-label="GitHub contribution calendar"
+      aria-describedby="calendar-help"
+    >
+      <div class="calendar" [style.--weeks]="data.weeks.length">
+        <div class="months" aria-hidden="true">
+          @for (month of data.months; track $index) {
+            <span>{{ month }}</span>
+          }
+        </div>
+        <div class="calendar-body">
+          <div class="weekdays" aria-hidden="true">
+            <span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span
+            ><span></span>
+          </div>
+          <div class="weeks">
+            @for (week of data.weeks; track $index) {
+              <div class="week">
+                @for (day of week; track $index) {
+                  @if (day) {
+                    <button
+                      class="day"
+                      [class]="'day level-' + day.level"
+                      [attr.data-date]="day.date"
+                      [attr.title]="dayLabel(day)"
+                      [attr.aria-label]="dayLabel(day)"
+                      [attr.aria-pressed]="selectedDate() === day.date"
+                      [attr.tabindex]="selectedDate() === day.date ? 0 : -1"
+                      (click)="selectedDate.set(day.date)"
+                      (focus)="selectedDate.set(day.date)"
+                      (keydown)="onDayKey($event, day)"
+                    ></button>
+                  } @else {
+                    <span class="empty-day"></span>
+                  }
+                }
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="calendar-bottom">
+      <p role="status" class="day-detail">
+        @if (selectedDay(); as day) {
+          {{ dayLabel(day) }}
+        }
+      </p>
+      <div class="legend" aria-label="Color intensity from fewer to more contributions">
+        <span>Less</span>
+        @for (level of levels; track level) {
+          <i [class]="'level-' + level"></i>
+        }
+        <span>More</span>
+      </div>
+    </div>
+    <div class="activity-meta">
+      <span
+        >{{ data.days[0].date + 'T00:00:00Z' | date: 'MMM d, y' : 'UTC' }} –
+        {{ data.days[data.days.length - 1].date + 'T00:00:00Z' | date: 'MMM d, y' : 'UTC' }}</span
+      ><span>Last checked {{ checkedAt() | date: 'shortTime' }}</span>
+    </div>
+  } @else if (loading()) {
+    <div class="loading-state" role="status">
+      <div class="calendar-placeholder" aria-hidden="true"></div>
+      <p>Loading GitHub contributions…</p>
+    </div>
+  }
+  @if (error()) {
+    <p class="load-error" role="status">
+      {{
+        calendar()
+          ? 'Could not refresh right now. Showing the last successfully loaded activity.'
+          : 'GitHub activity is temporarily unavailable. Try refreshing or view my profile on GitHub.'
+      }}
+    </p>
+  }
+</div>

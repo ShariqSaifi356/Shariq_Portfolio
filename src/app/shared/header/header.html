@@ -1,179 +1,68 @@
-<header class="site-header">
+﻿<header class="site-header">
   <div class="nav-shell">
-    <!-- Brand pill -->
-    <button
-      type="button"
-      class="nav-pill nav-pill-brand"
-      (click)="scrollToSection('home')"
-      aria-label="Go to home"
+    <a class="brand" href="#home" (click)="closeMobileMenu()" aria-label="Shariq Saifi home"
+      ><span class="brand-mark">s<span>.</span></span
+      ><span>shariq<span class="brand-last">saifi</span><span class="mint">.</span></span></a
     >
-      <span class="brand-mark text-glow">
-        <span class="text-primary font-bold">&lt;</span>
-        <span class="custom-text dark:text-[#E8E6EF]">shariq</span>
-        <span class="text-accent font-semibold">.qa</span>
-        <span class="text-primary font-bold">/&gt;</span>
-      </span>
-    </button>
-
-    <!-- Desktop nav links pill -->
-    <nav class="nav-pill nav-pill-links" aria-label="Primary">
+    <nav class="desktop-nav" aria-label="Main navigation">
       @for (item of navItems; track item.id) {
-        <button
-          type="button"
-          (click)="scrollToSection(item.id)"
-          class="nav-link-btn"
-          [class.is-active]="workspaceService.activeSection() === item.id"
-          [class.text-muted-dark]="
-            workspaceService.activeSection() !== item.id && workspaceService.theme() === 'dark'
-          "
-          [class.text-muted-light]="
-            workspaceService.activeSection() !== item.id && workspaceService.theme() === 'light'
-          "
+        <a
+          [href]="'#' + item.id"
+          [class.active]="workspaceService.activeSection() === item.id"
+          [attr.aria-current]="workspaceService.activeSection() === item.id ? 'location' : null"
+          >{{ item.label }}</a
         >
-          {{ item.label }}
-        </button>
       }
     </nav>
-
-    <!-- Actions pill: theme + hamburger (mobile) / theme + inspector (desktop) -->
-    <div class="nav-actions-wrap">
-      <div class="nav-pill nav-pill-actions">
-        <!-- Inspector (large screens) -->
-        <button
-          data-inspector-control
-          type="button"
-          (click)="workspaceService.toggleInspector()"
-          class="nav-action-btn nav-inspector-btn"
-          [class.is-on]="workspaceService.inspectorActive()"
-          aria-label="Toggle Inspector Mode"
-        >
-          <span class="hidden xl:inline">Inspector:</span>
-          @if (workspaceService.inspectorActive()) {
-            @if (workspaceService.inspectorTimerPaused()) {
-              <span class="font-bold text-accent">PINNED</span>
-            } @else {
-              <span class="font-bold text-accent"
-                >ON ({{ workspaceService.inspectorTimeLeft() }}s)</span
-              >
-            }
-          } @else {
-            <span class="font-bold opacity-60">OFF</span>
-          }
-        </button>
-
-        @if (workspaceService.inspectorActive() && !workspaceService.inspectorTimerPaused()) {
-          <button
-            data-inspector-control
-            type="button"
-            (click)="workspaceService.extendInspectorTime(60)"
-            class="nav-action-btn nav-inspector-btn nav-extend-btn"
-            aria-label="Extend Inspector Time"
-          >
-            +60s
-          </button>
-        }
-
-        <!-- Theme toggle -->
-        <button
-          data-inspector-control
-          type="button"
-          (click)="workspaceService.toggleTheme()"
-          class="nav-action-btn"
-          aria-label="Toggle Theme"
-        >
-          @if (workspaceService.theme() === 'dark') {
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 3v2.25m0 13.5V21M4.22 4.22l1.636 1.636m12.288 12.288l1.636 1.636M3 12h2.25m13.5 0H21M5.856 18.144l1.636-1.636m12.288-12.288l1.636-1.636M12 7.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9z"
-              />
-            </svg>
-          } @else {
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-              />
-            </svg>
-          }
-        </button>
-
-        <!-- Hamburger (mobile / tablet only) -->
-        <button
-          data-inspector-control
-          type="button"
-          (click)="toggleMobileMenu($event)"
-          class="mobile-menu-btn nav-action-btn lg:hidden"
-          [attr.aria-expanded]="isMobileMenuOpen()"
-          [attr.aria-controls]="'mobile-nav-panel'"
-          [attr.aria-label]="isMobileMenuOpen() ? 'Close menu' : 'Open menu'"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-5 h-5 sm:w-6 sm:h-6"
-            aria-hidden="true"
-          >
-            @if (isMobileMenuOpen()) {
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            } @else {
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            }
-          </svg>
-        </button>
-      </div>
-
-      <!-- Mobile dropdown - anchored under actions pill -->
-      <nav
-        id="mobile-nav-panel"
-        class="mobile-nav lg:hidden"
-        [class.is-open]="isMobileMenuOpen()"
-        [attr.aria-hidden]="!isMobileMenuOpen()"
-        aria-label="Mobile"
+    <div class="nav-actions">
+      @if (bugDefense.available()) {
+        <button class="bug-replay" (click)="bugDefense.play()" title="Replay the 9-second bug defense animation" aria-label="Replay bug defense animation"><span aria-hidden="true">↻</span> Bug defense</button>
+      }
+      <a
+        class="header-social"
+        [href]="personal.github"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub profile"
+        title="GitHub"
+        ><img src="logos/github.svg" alt="" width="18" height="18" /><span>GitHub</span></a
       >
-        <div class="mobile-nav-inner">
-          <ul class="mobile-nav-list">
-            @for (item of navItems; track item.id) {
-              <li>
-                <button
-                  type="button"
-                  (click)="scrollToSection(item.id)"
-                  class="mobile-nav-link"
-                  [attr.aria-current]="workspaceService.activeSection() === item.id ? 'page' : null"
-                  [class.is-active]="workspaceService.activeSection() === item.id"
-                >
-                  <span class="mobile-nav-link-label">{{ item.label }}</span>
-                </button>
-              </li>
-            }
-          </ul>
-        </div>
-      </nav>
+      <a
+        class="header-social"
+        [href]="personal.linkedin"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn profile"
+        title="LinkedIn"
+        ><img src="logos/linkedin.svg" alt="" width="18" height="18" /><span>LinkedIn</span></a
+      >
+      <button
+        class="icon-button"
+        (click)="workspaceService.toggleTheme()"
+        [attr.aria-label]="
+          workspaceService.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+        "
+      >
+        {{ workspaceService.theme() === 'dark' ? '☀' : '☾' }}
+      </button>
+      <a class="nav-contact" href="#contact">Let’s talk <span>↗</span></a>
+      <button
+        class="icon-button mobile-menu-btn"
+        (click)="toggleMobileMenu($event)"
+        [attr.aria-expanded]="isMobileMenuOpen()"
+        aria-controls="mobile-nav-panel"
+        [attr.aria-label]="isMobileMenuOpen() ? 'Close menu' : 'Open menu'"
+      >
+        {{ isMobileMenuOpen() ? '✕' : '☰' }}
+      </button>
     </div>
   </div>
+  @if (isMobileMenuOpen()) {
+    <nav id="mobile-nav-panel" aria-label="Mobile navigation">
+      @for (item of navItems; track item.id) {
+        <a [href]="'#' + item.id" (click)="closeMobileMenu()">{{ item.label }}</a>
+      }
+      <a href="#contact" (click)="closeMobileMenu()">Contact ↗</a>
+    </nav>
+  }
 </header>

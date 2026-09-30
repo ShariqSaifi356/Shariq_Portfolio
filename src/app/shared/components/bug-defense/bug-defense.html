@@ -1,0 +1,25 @@
+<canvas #scene class="defense-canvas" aria-hidden="true" [class.active]="defense.phase() !== 'idle' && defense.phase() !== 'complete'"></canvas>
+@if (defense.phase() !== 'idle' && defense.phase() !== 'complete') {
+  <aside class="defense-hud" aria-label="Bug defense animation">
+    <div class="hud-top"><span class="mission-label">◈ QUALITY DEFENSE / LIVE DEMO</span><button (click)="stop()" aria-label="Skip bug animation">Skip ×</button></div>
+    <div class="hud-title" role="status">
+      @switch (defense.phase()) {
+        @case ('invasion') { <strong>Bug invasion detected.</strong><span>Unexpected guests. Expected response.</span> }
+        @case ('defending') { <strong>Automation fights back.</strong><span>Targeting defects. Deploying fixes.</span> }
+        @case ('repairing') { <strong>Restoring order.</strong><span>Running the final regression check…</span> }
+      }
+    </div>
+    <div class="mission-meter"><span [style.width.%]="defense.progress()"></span></div>
+    <div class="hud-bottom"><span>{{ defense.cleared() }} / {{ totalBugs }} BUGS FIXED</span><span>9-SECOND MISSION</span></div>
+  </aside>
+}
+@if (defense.phase() === 'complete') {
+  <section class="defense-success" aria-label="Bug defense result">
+    <button class="result-close" (click)="stop()" aria-label="Dismiss animation result">×</button>
+    <div class="success-symbol" aria-hidden="true">✓</div>
+    <div role="status"><span class="mission-label">MISSION COMPLETE</span><h2>All bugs squashed.<br />All failures fixed.</h2><p>Order restored. Tests green.<br />That’s the power of quality engineering.</p></div>
+    <div class="result-stats"><span>{{ totalBugs }} / {{ totalBugs }} patched</span><span>100% restored</span></div>
+    <div class="result-actions"><button (click)="defense.play()">↻ Replay mission</button><button (click)="stop()">Explore portfolio →</button></div>
+    <small>A playful demo of my testing mindset.</small>
+  </section>
+}

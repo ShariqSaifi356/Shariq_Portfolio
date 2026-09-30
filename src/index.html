@@ -2,19 +2,35 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
-    <title>Shariq | QA Automation Engineer Portfolio</title>
+    <title>Shariq Saifi | SDET & Quality Engineering</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      // Reset reloads before the browser restores a scroll position or follows a fragment.
+      if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+        history.scrollRestoration = 'manual';
+        if (location.hash) {
+          history.replaceState(history.state, '', location.pathname + location.search);
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        window.addEventListener(
+          'pageshow',
+          () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' }),
+          { once: true },
+        );
+      }
+    </script>
     <meta
       name="description"
-      content="Professional portfolio of Shariq, a QA Automation Engineer specializing in Playwright, Selenium, Java, Python, API Automation, and building robust testing frameworks."
+      content="Mohammad Shariq Saifi, SDET with four years of experience in test automation, API testing, and quality engineering. Open to opportunities across industries."
     />
     <meta
       name="keywords"
-      content="QA, QA Engineer, Automation, Selenium, Playwright, Java, Python, REST Assured, Test Automation, Software Engineer, Portfolio"
+      content="SDET, Quality Engineering, Test Automation, API Testing, Software Testing, Selenium, Playwright, Java, Python, Portfolio"
     />
     <meta name="author" content="Shariq" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="theme-color" content="#101719" />
+    <link rel="icon" type="image/svg+xml" sizes="any" href="favicon.svg?v=2" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -24,9 +40,7 @@
       rel="stylesheet"
     />
   </head>
-  <body
-    class="bg-bg-light dark:bg-bg-dark text-text-light dark:text-text-dark font-sans antialiased overflow-x-clip selection:bg-violet-500/25 selection:text-violet-100"
-  >
+  <body>
     <app-root></app-root>
   </body>
 </html>

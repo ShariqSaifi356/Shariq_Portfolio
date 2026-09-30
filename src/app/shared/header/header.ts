@@ -1,5 +1,7 @@
-import { Component, HostListener, inject, OnDestroy, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, inject, OnDestroy, signal } from '@angular/core';
+import { PORTFOLIO_DATA } from '../data/portfolio-data';
 import { CommonModule } from '@angular/common';
+import { BugDefenseService } from '../services/bug-defense.service';
 import { WorkspaceService } from '../services/workspace.service';
 
 @Component({
@@ -9,18 +11,19 @@ import { WorkspaceService } from '../services/workspace.service';
   styleUrl: './header.css',
 })
 export class Header implements OnDestroy {
+  readonly bugDefense = inject(BugDefenseService);
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  readonly personal = PORTFOLIO_DATA.personal;
   readonly workspaceService = inject(WorkspaceService);
   readonly scrollProgress = signal<number>(0);
   readonly isMobileMenuOpen = signal<boolean>(false);
 
   readonly navItems = [
-    { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
+    { id: 'ai', label: 'AI & Testing' },
     { id: 'projects', label: 'Projects' },
-    { id: 'certifications', label: 'Certifications' },
-    { id: 'contact', label: 'Contact' },
   ];
 
   ngOnDestroy(): void {
@@ -45,6 +48,18 @@ export class Header implements OnDestroy {
   @HostListener('document:keydown.escape')
   onEscape(): void {
     if (this.isMobileMenuOpen()) {
+      this.host.nativeElement.querySelector<HTMLButtonElement>('.mobile-menu-btn')?.focus();
+      this.closeMobileMenu();
+    }
+  }
+
+  @HostListener('document:focusin', ['$event'])
+  onDocumentFocusIn(event: FocusEvent): void {
+    if (
+      this.isMobileMenuOpen() &&
+      event.target instanceof Node &&
+      !this.host.nativeElement.contains(event.target)
+    ) {
       this.closeMobileMenu();
     }
   }

@@ -1,44 +1,26 @@
-import { Component, HostListener, OnInit, inject, signal } from '@angular/core';
+﻿import { Component, HostListener, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { WorkspaceService } from './shared/services/workspace.service';
 import { Header } from './shared/header/header';
-import { QaInspectorComponent } from './shared/components/qa-inspector/qa-inspector';
-
+import { BugDefense } from './shared/components/bug-defense/bug-defense';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, QaInspectorComponent],
+  imports: [RouterOutlet, Header, BugDefense],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
-export class App implements OnInit {
+export class App {
   readonly workspaceService = inject(WorkspaceService);
-  readonly showBackToTop = signal<boolean>(false);
-
-  ngOnInit(): void {
-    // Initial scroll check
-    this.checkScroll();
+  readonly showBackToTop = signal(false);
+  @HostListener('window:scroll') onWindowScroll(): void {
+    this.showBackToTop.set(window.scrollY > 600);
   }
-
-  @HostListener('document:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent): void {
-    const root = document.documentElement;
-    root.style.setProperty('--mouse-x', `${event.clientX}px`);
-    root.style.setProperty('--mouse-y', `${event.clientY}px`);
-  }
-
-  @HostListener('window:scroll')
-  onWindowScroll(): void {
-    this.checkScroll();
-  }
-
   scrollToTop(): void {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'instant'
+        : 'smooth',
     });
-  }
-
-  private checkScroll(): void {
-    this.showBackToTop.set(window.scrollY > 400);
   }
 }

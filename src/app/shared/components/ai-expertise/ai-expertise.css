@@ -1,0 +1,130 @@
+﻿:host {
+  display: block;
+}
+.ai-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.ai-heading .eyebrow {
+  margin-bottom: 16px;
+}
+.ai-heading h2 {
+  font-size: 36px;
+  font-weight: 550;
+  letter-spacing: -1.3px;
+}
+.ai-heading > p {
+  max-width: 330px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.ai-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.ai-card {
+  padding: 30px;
+  background: radial-gradient(ellipse at 0 0, #79bba615, transparent 75%), var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.ai-card-top {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 23px;
+}
+.ai-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: #f7f8f2;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.ai-card h3 {
+  font-size: 23px;
+  letter-spacing: -0.5px;
+}
+.ai-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+  margin: 15px 0 22px;
+}
+.ai-credential {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 18px;
+  border: 1px solid var(--border);
+  padding: 18px 24px;
+  border-radius: 8px;
+}
+.ai-credential > span:first-child {
+  font-size: 25px;
+  color: var(--accent);
+}
+.ai-credential strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 550;
+}
+.ai-credential small {
+  display: block;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.credential-arrow {
+  margin-left: auto;
+  color: var(--accent);
+  font-size: 11px;
+}
+@media (max-width: 900px) {
+  .ai-heading {
+    display: block;
+  }
+  .ai-heading h2 {
+    font-size: 30px;
+  }
+  .ai-heading > p {
+    margin-top: 18px;
+    max-width: none;
+  }
+  .ai-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .ai-card {
+    padding: 24px;
+  }
+  .ai-credential {
+    padding: 16px;
+    flex-wrap: wrap;
+  }
+  .credential-arrow {
+    margin-left: 0;
+    width: 100%;
+    padding-left: 35px;
+  }
+}
+
+/* Light theme surfaces and contrast. */
+
+:host-context(.light) .ai-card {
+  background: linear-gradient(135deg, #f0f9f5, #fff 65%);
+  box-shadow: var(--card-shadow);
+}
+:host-context(.light) .ai-credential {
+  background: var(--surface);
+}
+:host-context(.light) .ai-logo {
+  background: #fff;
+  border: 1px solid var(--border);
+}

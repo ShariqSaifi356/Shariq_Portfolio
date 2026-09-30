@@ -1,0 +1,183 @@
+/* Shared motion keeps the same rhythm across both themes. */
+.reading-progress { display: none; }
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reading-progress {
+      display: block;
+      position: fixed;
+      inset: 0 0 auto;
+      height: 3px;
+      z-index: 60;
+      pointer-events: none;
+      background: linear-gradient(90deg, var(--accent), #77c5dd);
+      transform-origin: left;
+      animation: reading-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .page-shell .project-visual {
+    position: relative;
+    overflow: hidden;
+  }
+  .page-shell .project-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 25%, #ffffff12 48%, transparent 70%);
+    transform: translateX(-110%);
+  }
+  .page-shell .project-card:is(:hover, :focus-within) .project-visual::after {
+    animation: card-sheen 850ms ease-out both;
+  }
+  .page-shell .project-card.motion-entered .flow-diagram > *,
+  .page-shell .project-card.motion-entered .mini-tags > span {
+    animation: workflow-step 600ms both;
+  }
+  .page-shell .project-card.motion-entered .flow-diagram > :nth-child(2),
+  .page-shell .project-card.motion-entered .mini-tags > :nth-child(2) { animation-delay: 150ms; }
+  .page-shell .project-card.motion-entered .flow-diagram > :nth-child(3),
+  .page-shell .project-card.motion-entered .mini-tags > :nth-child(3) { animation-delay: 300ms; }
+  .page-shell .project-card.motion-entered .flow-diagram > :nth-child(4) { animation-delay: 450ms; }
+  .page-shell .project-card.motion-entered .flow-diagram > :nth-child(5) { animation-delay: 600ms; }
+
+  .page-shell .layer, .page-shell .scenario-picker button {
+    transition: background-color 240ms, border-color 240ms, box-shadow 240ms;
+  }
+  .page-shell .layer-indicator, .page-shell .scenario-arrow {
+    transition: transform 300ms;
+  }
+  .page-shell .layer[aria-pressed='true'] .layer-indicator,
+  .page-shell .scenario-picker button[aria-pressed='true'] .scenario-arrow {
+    transform: translate(3px, -3px);
+  }
+  .page-shell .edge-case:not([hidden]) { animation: workflow-step 350ms ease-out; }
+  .page-shell .contact-section.motion-entered .serif-word {
+    display: inline-block;
+    animation: trust-arrive 850ms 180ms both;
+  }
+  .page-shell .impact-strip.motion-entered .impact-title {
+    animation: workflow-step 600ms 120ms both;
+  }
+  .page-shell .contact-section {
+    transition: border-color 350ms, box-shadow 350ms;
+  }
+  .page-shell .contact-section:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 8%, transparent);
+  }
+  .toast { animation: toast-arrive 350ms cubic-bezier(0.22, 1, 0.36, 1); }
+  .page-shell :is(.project-card, .education-card, .certificate, .ai-card, .extra-tool) {
+    transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1), border-color 260ms, box-shadow 360ms;
+  }
+
+  .page-shell :is(.button, .skill-filters button), .icon-button, .back-top {
+    transition: transform 240ms, background-color 240ms, border-color 240ms, box-shadow 240ms;
+  }
+
+  .button > span, .nav-contact > span, .tool-logo img, .project-visual > div,
+  .approach-link > span, .brand-mark, .credential-arrow {
+    display: inline-block;
+    transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .button:active, .skill-filters button:active, .icon-button:active {
+    transform: scale(0.97);
+  }
+
+  .button:focus-visible > span, .button:hover > span, .nav-contact:hover > span {
+    transform: translate(3px, -2px);
+  }
+
+  .approach-link:hover > span { transform: translateY(4px); }
+  .brand:hover .brand-mark { transform: rotate(-8deg); }
+
+  .desktop-nav a::before {
+    content: '';
+    position: absolute;
+    inset: auto 0 24px;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 260ms;
+  }
+
+  .desktop-nav a:hover::before, .desktop-nav a:focus-visible::before {
+    transform: scaleX(1);
+  }
+
+  #mobile-nav-panel { animation: menu-arrive 260ms ease-out; }
+  .back-top { animation: element-arrive 300ms ease-out; }
+  .page-shell details[open] > :not(summary) { animation: element-arrive 320ms ease-out; }
+
+  .hero .wave { animation: greeting-turn 1.4s 400ms both; }
+  .hero .serif-word { position: relative; }
+  .hero .serif-word::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0.5;
+    transform-origin: left;
+    animation: accent-draw 900ms 650ms both;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .page-shell :is(.project-card, .education-card, .certificate, .ai-card, .extra-tool):hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+      box-shadow: 0 14px 30px #00000014;
+    }
+    .tool-card:hover .tool-logo img { transform: rotate(-7deg) scale(1.08); }
+    .project-card:hover .project-visual > div { transform: translateY(-3px); }
+    .button:hover { box-shadow: 0 6px 20px #00000018; }
+    .icon-button:hover, .back-top:hover { transform: translateY(-3px); }
+    .ai-credential:hover .credential-arrow { transform: translateX(4px); }
+  }
+}
+
+@keyframes element-arrive {
+  from { opacity: 0; translate: 0 8px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes menu-arrive {
+  from { opacity: 0; translate: 0 -8px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes greeting-turn {
+  0%, 100% { transform: rotate(0); }
+  35% { transform: rotate(100deg); }
+  65% { transform: rotate(70deg); }
+}
+@keyframes accent-draw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes reading-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes card-sheen {
+  from { transform: translateX(-110%); }
+  to { transform: translateX(110%); }
+}
+@keyframes workflow-step {
+  from { opacity: 0; translate: 0 7px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes trust-arrive {
+  from { opacity: 0; transform: translateY(12px) rotate(-4deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0); }
+}
+@keyframes toast-arrive {
+  from { opacity: 0; translate: 0 12px; }
+  to { opacity: 1; translate: 0 0; }
+}

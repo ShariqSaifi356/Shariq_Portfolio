@@ -15,8 +15,8 @@ export class WorkspaceService {
   private snackbarTimeout: any = null;
 
   constructor() {
-    // Sync initial theme with DOM
-    this.applyTheme(this.theme());
+    // Every page load starts dark; the toggle applies only to this visit.
+    this.applyTheme('dark');
   }
 
   toggleTheme(): void {
@@ -85,11 +85,11 @@ export class WorkspaceService {
     if (theme === 'dark') {
       root.classList.add('dark');
       root.classList.remove('light');
-      root.style.backgroundColor = '#0B0A0F';
+      root.style.backgroundColor = '#101719';
     } else {
       root.classList.add('light');
       root.classList.remove('dark');
-      root.style.backgroundColor = '#FBF8EB';
+      root.style.backgroundColor = '#f5f7f9';
     }
   }
 }

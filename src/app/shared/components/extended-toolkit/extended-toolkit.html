@@ -1,0 +1,26 @@
+﻿<div class="extended-toolkit">
+  <h3 class="tiny-label">SUPPORTING TOOLS & PLATFORMS</h3>
+  <div class="extra-tools">
+    @for (tool of tools; track tool.name) {
+      <div class="extra-tool">
+        <span class="logo-tile"
+          ><img [src]="'logos/' + tool.icon" alt="" width="28" height="28"
+        /></span>
+        <div>
+          <h4>{{ tool.name }}</h4>
+          <p>{{ tool.detail }}</p>
+        </div>
+      </div>
+    }
+  </div>
+  <h3 class="tiny-label methods-heading">HOW I STRUCTURE AUTOMATION</h3>
+  <div class="methods">
+    @for (method of methods; track method.name) {
+      <div>
+        <span class="method-icon"
+          ><img [src]="'logos/' + method.icon" alt="" width="22" height="22" /></span
+        ><span>{{ method.name }}</span>
+      </div>
+    }
+  </div>
+</div>

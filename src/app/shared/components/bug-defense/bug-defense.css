@@ -1,0 +1,31 @@
+:host { display: contents; }
+.defense-canvas { display: none; position: fixed; inset: 0; width: 100%; height: 100%; z-index: 55; pointer-events: none; }
+.defense-canvas.active { display: block; }
+.defense-hud, .defense-success { position: fixed; z-index: 65; color: #ecf9f3; background: #111f2bf2; border: 1px solid #6d9d9570; box-shadow: 0 20px 80px #0005; backdrop-filter: blur(18px); }
+.defense-hud { top: 112px; right: 30px; width: 345px; border-radius: 14px; padding: 18px 20px; animation: hud-arrive 350ms ease-out; }
+.hud-top, .hud-bottom { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.mission-label, .hud-bottom { font: 9px 'JetBrains Mono', monospace; letter-spacing: 1px; color: #a3dfcc; }
+.hud-top button, .result-close { border: 0; color: #d5e9e5; background: transparent; cursor: pointer; }
+.hud-top button { font-size: 11px; padding: 5px; }
+.hud-title { margin: 18px 0; }
+.hud-title strong { display: block; font-size: 21px; letter-spacing: -0.6px; }
+.hud-title span { display: block; font-size: 11px; color: #a4b9bd; margin-top: 6px; }
+.mission-meter { height: 3px; background: #30414e; border-radius: 5px; overflow: hidden; margin-bottom: 12px; }
+.mission-meter span { display: block; height: 100%; background: linear-gradient(90deg, #a8f7c9, #89d6ff); transition: width 100ms linear; }
+.hud-bottom { font-size: 8px; color: #9caeba; }
+.defense-success { top: 50%; left: 50%; translate: -50% -50%; width: 440px; padding: 36px; border-radius: 22px; text-align: center; animation: result-arrive 500ms cubic-bezier(.22,1,.36,1); }
+.defense-success { max-height: calc(100dvh - 32px); overflow-y: auto; }
+.defense-hud { max-height: calc(100dvh - 128px); overflow-y: auto; }
+.result-close { position: absolute; top: 10px; right: 14px; font-size: 25px; width: 36px; height: 36px; }
+.success-symbol { display: grid; place-items: center; margin: 0 auto 20px; width: 62px; height: 62px; border-radius: 50%; color: #b6ffdb; background: #a0ffcf14; border: 1px solid #9effc660; box-shadow: 0 0 40px #9affce16; font-size: 30px; }
+h2 { font-size: 30px; line-height: 1.15; letter-spacing: -1px; margin: 14px 0; }
+p { color: #aebfc3; font-size: 13px; line-height: 1.7; }
+.result-stats { display: flex; justify-content: center; gap: 25px; padding: 18px 0; margin: 20px 0; border-block: 1px solid #4e786544; color: #b5f4cd; font: 11px monospace; }
+.result-actions { display: flex; gap: 10px; }
+.result-actions button { flex: 1; padding: 12px 8px; border-radius: 7px; border: 1px solid #8cf1bf55; font-size: 11px; color: #d9f7e5; background: transparent; }
+.result-actions button:first-child { background: #b8efca; color: #132c24; }
+.result-actions button:hover { filter: brightness(1.1); }
+small { display: block; color: #80999f; margin-top: 19px; font-size: 10px; }
+@keyframes hud-arrive { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes result-arrive { from { opacity: 0; transform: translateY(15px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@media (max-width: 1199px), (prefers-reduced-motion: reduce) { .defense-canvas, .defense-canvas.active, .defense-hud, .defense-success { display: none; } }

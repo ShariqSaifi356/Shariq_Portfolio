@@ -1,719 +1,299 @@
-<div
-  class="mx-auto w-full max-w-7xl overflow-x-clip px-3 pt-20 pb-10 sm:px-6 sm:pt-28 sm:pb-16 md:pt-28 lg:px-8 space-y-12 sm:space-y-16 md:space-y-20 lg:space-y-32"
->
-  <!-- ==================== HERO SECTION ==================== -->
-  <section
-    id="home"
-    class="min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100svh-4rem)] md:min-h-[80vh] flex flex-col justify-center items-center lg:grid lg:grid-cols-12 gap-6 sm:gap-8 md:gap-10 lg:gap-12 pt-4 sm:pt-8 md:pt-12"
-  >
-    <!-- Left Column: Intro text -->
-    <div class="w-full min-w-0 lg:col-span-6 space-y-6 sm:space-y-8 text-center lg:text-left">
-      <div
-        class="inline-flex max-w-full flex-wrap items-center justify-center gap-2 rounded-full glass border border-blue-500/20 px-3 py-1 text-center text-[11px] sm:text-xs font-mono text-primary animate-pulse-slow"
-      >
-        <span class="h-2 w-2 shrink-0 rounded-full bg-accent"></span>
-        <span>Available for Automation Projects</span>
-      </div>
-
-      <h1
-        class="text-[1.65rem] leading-snug sm:text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight sm:leading-tight select-none break-words"
-      >
-        Hi, I'm
-        <span
-          class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent text-glow"
-          >{{ personal.name }}</span
-        >
-        <br />
-        <span
-          class="text-base sm:text-2xl lg:text-3xl text-slate-400 font-mono font-medium block mt-2 break-words"
-          >{{ personal.title }}</span
-        >
-      </h1>
-
-      <p
-        class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-xl mx-auto lg:mx-0 font-sans leading-relaxed"
-      >
-        {{ personal.summary }}
+﻿<div class="page-shell">
+  <section id="home" class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow" appReveal><span class="status-dot"></span> SDET · QUALITY ENGINEERING</div>
+      <p class="intro" appReveal [revealDelay]="60">Hi, I’m Shariq <span class="wave">✳</span></p>
+      <h1 appReveal [revealDelay]="120">Better software.<br />Starts with <span class="serif-word">quality.</span></h1>
+      <p class="hero-description" appReveal [revealDelay]="180">
+        I help teams release reliable software through thoughtful test design, maintainable
+        automation, and clear feedback across web, API, and data layers. Open to SDET and quality
+        engineering opportunities across industries.
       </p>
-
-      <!-- Call to Actions -->
-      <div
-        class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 font-sans"
-      >
-        <button
-          (click)="scrollToSection('projects')"
-          class="w-full sm:w-auto px-6 py-3 rounded-full bg-primary hover:bg-blue-600 text-white font-medium shadow-lg shadow-blue-500/25 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer text-center"
+      <div class="hero-actions" appReveal [revealDelay]="240">
+        <a class="button primary" href="#projects">View my work <span>↗</span></a
+        ><a class="button secondary" href="Mohammad_Shariq_Saifi_Resume.pdf" download
+          >Download CV <span>↓</span></a
         >
-          View Projects
-        </button>
-        <a
-          href="Mohammad_Shariq_Saifi_Resume.pdf"
-          download="Mohammad_Shariq_Saifi_Resume.pdf"
-          (click)="
-            workspaceService.showSnackbar('Downloading Mohammad Shariq Saifi\'s Resume PDF...')
-          "
-          class="w-full sm:w-auto px-6 py-3 rounded-full glass border border-blue-500/20 text-primary hover:text-white hover:bg-primary/10 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer text-center inline-flex items-center justify-center font-medium"
-        >
-          Download Resume
-        </a>
+      </div>
+      <div class="hero-meta" appReveal [revealDelay]="300">
+        <span><span class="location-dot">⌖</span> Gurugram, India</span
+        ><span class="meta-divider"></span
+        ><a [href]="personal.github" target="_blank" rel="noopener noreferrer">GitHub ↗</a
+        ><a [href]="personal.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
       </div>
     </div>
-
-    <!-- Right Column: Interactive Terminal -->
-    <div class="lg:col-span-6 w-full min-w-0 flex justify-center lg:justify-end animate-float">
-      <app-custom-terminal class="block w-full max-w-full"></app-custom-terminal>
+    <app-automation-art appReveal [revealDelay]="180" />
+  </section>
+  <div class="impact-strip" appReveal>
+    <div class="impact-title">
+      <span class="tiny-label">EXPERIENCE IN NUMBERS</span>
+      <p>Less repetition.<br />More reliable testing.</p>
+    </div>
+    <div>
+      <strong aria-label="4 years"><span class="stat-number" [appCountUp]="4" aria-hidden="true">4</span><span aria-hidden="true"> yrs</span></strong>
+      <p>In software testing & automation</p>
+    </div>
+    <div>
+      <strong aria-label="400 plus"><span class="stat-number stat-hundreds" [appCountUp]="400" aria-hidden="true">400</span><span aria-hidden="true">+</span></strong>
+      <p>Regression cases automated</p>
+    </div>
+    <div>
+      <strong aria-label="Approximately 40 percent"><span aria-hidden="true" class="stat-prefix">~</span><span class="stat-number stat-tens" [appCountUp]="40" aria-hidden="true">40</span><span aria-hidden="true">%</span></strong>
+      <p>Less manual testing effort</p>
+    </div>
+  </div>
+  <section id="about" class="section about-section">
+    <div class="section-heading" appReveal>
+      <div class="eyebrow">01 / ABOUT ME</div>
+      <h2>Curious about the product.<br />Careful with the details.</h2>
+    </div>
+    <div class="about-content" appReveal>
+      <p>
+        I’m Mohammad Shariq Saifi, a Software Development Engineer in Test with four years of
+        experience at <strong>Tata Consultancy Services</strong>. My work spans test design,
+        automation frameworks, API validation, and the investigation of defects that affect real
+        user journeys.
+      </p>
+      <p>
+        I start by understanding how a product should work, where it can fail, and what matters most
+        to its users. Then I build tests that are useful to the team: clear in purpose, repeatable
+        in execution, and practical to maintain.
+      </p>
+      <p>
+        I’m open to working across industries. I bring a disciplined testing approach and the
+        curiosity to learn each product’s users, business rules, and technical challenges.
+      </p>
+      <div class="about-tags">
+        <span>Test automation</span><span>API & data validation</span
+        ><span>Collaborative problem-solving</span>
+      </div>
+      <a class="approach-link" href="#approach"
+        >Explore my testing approach <span aria-hidden="true">↓</span></a
+      >
     </div>
   </section>
-
-  <!-- ==================== ABOUT ME SECTION ==================== -->
-  <section id="about" class="scroll-mt-20 sm:scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
-    <div class="text-center lg:text-left">
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary"></span>About Me<span class="text-primary">/</span>
-      </h2>
-      <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-      <!-- Left Column: Technical highlights card -->
-      <div
-        class="lg:col-span-4 min-w-0 rounded-xl glass-premium p-4 sm:p-6 border border-blue-500/20 shadow-xl flex flex-col justify-between select-none"
-      >
-        <div class="space-y-4">
-          <div
-            class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-6 h-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"
-              />
-            </svg>
-          </div>
-          <div>
-            <h3 class="text-lg font-bold text-slate-900 dark:text-slate-100">
-              {{ personal.name }}
-            </h3>
-            <p class="text-xs font-mono text-slate-400">Gurugram, India</p>
-          </div>
-        </div>
-
-        <!-- Metrics Grid -->
-        <div class="grid grid-cols-2 gap-4 mt-6 border-t border-white/5 pt-6 text-center">
-          <div class="space-y-1">
-            <p class="text-2xl font-bold text-primary font-mono text-glow">4+</p>
-            <p class="text-[10px] text-slate-400 uppercase font-semibold">Years Exp</p>
-          </div>
-          <div class="space-y-1">
-            <p class="text-2xl font-bold text-accent font-mono text-glow">400+</p>
-            <p class="text-[10px] text-slate-400 uppercase font-semibold">Tests Auto</p>
-          </div>
-          <div class="space-y-1">
-            <p class="text-2xl font-bold text-amber-500 font-mono text-glow">40%</p>
-            <p class="text-[10px] text-slate-400 uppercase font-semibold">Effort Saved</p>
-          </div>
-          <div class="space-y-1">
-            <p class="text-2xl font-bold text-primary font-mono text-glow">3</p>
-            <p class="text-[10px] text-slate-400 uppercase font-semibold">Client Banks</p>
-          </div>
-        </div>
+  <div id="approach" class="section">
+    <app-quality-lab appReveal />
+  </div>
+  <section id="experience" class="section">
+    <div class="section-heading heading-row" appReveal>
+      <div>
+        <div class="eyebrow">02 / PROFESSIONAL EXPERIENCE</div>
+        <h2>Hands-on work. Measurable impact.</h2>
       </div>
-
-      <!-- Right Column: Visual Bio description and Interests -->
-      <div
-        class="lg:col-span-8 min-w-0 flex flex-col justify-between rounded-xl glass p-4 sm:p-6 md:p-8 border border-white/5 shadow-2xl"
-      >
-        <div class="space-y-4">
-          <h3
-            class="text-lg sm:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent"
-          >
-            QA Automation Architect & Explorer
-          </h3>
-          <p
-            class="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-sans"
-          >
-            I am a QA Automation Engineer dedicated to validating system behavior through code. I
-            look at codebases through the lens of testing: checking boundary conditions, hunting
-            edge cases, and building frameworks that developers trust.
-          </p>
-          <p
-            class="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed font-sans"
-          >
-            Whether it's setting up parallel visual regressions in Playwright, automating mobile
-            gestural sweeps in Appium, or creating contract suites for APIs, my focus remains on
-            speed, reliability, and precision.
-          </p>
+      <p>From test design and automation to defect analysis and release validation.</p>
+    </div>
+    @for (job of experiences; track job.company) {
+      <article class="experience-card" appReveal>
+        <div class="experience-side">
+          <span class="company-logo"
+            ><img
+              src="logos/tcs.svg"
+              alt="Tata Consultancy Services"
+              width="174"
+              height="58" /></span
+          ><span class="tiny-label">{{ job.duration }}</span
+          ><span class="current-badge">Current role</span>
         </div>
-
-        <div class="mt-6 sm:mt-8">
-          <h4
-            class="text-xs font-mono font-bold tracking-wider text-slate-400 uppercase mb-3 select-none"
-          >
-            Interests & Tags
-          </h4>
-          <div class="flex flex-wrap gap-2">
-            @for (
-              interest of [
-                'CI/CD Integration',
-                'Test Automation',
-                'Bug Hunting',
-                'Pipeline Velocity',
-                'Espresso',
-                'Synthwave Coding',
-                'Allure Visuals',
-              ];
-              track interest
-            ) {
-              <span
-                class="px-3 py-1.5 rounded-full text-xs font-medium font-mono glass border border-blue-500/10 text-primary hover:border-primary hover:text-white hover:shadow-[0_0_8px_#3B82F6] transition-all duration-300 cursor-default select-none"
-              >
-                {{ interest }}
-              </span>
+        <div class="experience-main">
+          <h3>{{ job.role }}</h3>
+          <p class="company-name">{{ job.company }}</p>
+          <p class="client-label">
+            Client engagements · Intesa Sanpaolo Bank & JPMorgan Chase Bank
+          </p>
+          <ul>
+            @for (item of job.responsibilities.slice(0, 4); track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+          <details>
+            <summary>Responsibilities & domain experience <span>+</span></summary>
+            <ul>
+              @for (item of job.responsibilities.slice(4); track item) {
+                <li>{{ item }}</li>
+              }
+            </ul>
+          </details>
+          <div class="tags">
+            @for (tech of job.techStack; track tech) {
+              <span>{{ tech }}</span>
             }
           </div>
         </div>
-      </div>
-    </div>
+      </article>
+    }
   </section>
-
-  <!-- ==================== EXPERIENCE SECTION ==================== -->
-  <section id="experience" class="scroll-mt-20 sm:scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
-    <div class="text-center lg:text-left">
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary"></span>Work History<span class="text-primary">/</span>
-      </h2>
-      <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
+  <section id="skills" class="section">
+    <div class="section-heading heading-row" appReveal>
+      <div>
+        <div class="eyebrow">03 / TECHNICAL SKILLS</div>
+        <h2>Tools for the full testing workflow.</h2>
+      </div>
+      <p>Languages, frameworks, and platforms I use to test, investigate, and automate.</p>
     </div>
-
-    <div
-      class="max-w-3xl mx-auto w-full min-w-0 overflow-x-clip flex flex-col justify-center space-y-6 sm:space-y-8"
-    >
-      <div
-        class="relative ml-3 sm:ml-4 pl-8 sm:pl-10 border-l border-blue-500/20 space-y-8 sm:space-y-12"
-      >
-        @for (job of experiences(); track job.company; let idx = $index) {
-          <div class="relative group min-w-0">
-            <!-- Timeline indicator node (centered on rail - no horizontal overflow) -->
-            <div
-              (click)="toggleExperience(idx); $event.stopPropagation()"
-              class="absolute left-0 top-1.5 -translate-x-1/2 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-slate-900 flex items-center justify-center cursor-pointer transition-all duration-300 border border-blue-500/30 group-hover:border-primary group-hover:shadow-[0_0_8px_#7C8CFF] z-10"
-              [ngClass]="
-                job.expanded
-                  ? 'bg-primary text-white scale-110 border-primary'
-                  : 'text-primary hover:scale-105'
-              "
-            >
-              @if (job.expanded) {
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="3"
-                  stroke="currentColor"
-                  class="w-3.5 h-3.5 sm:w-4 sm:h-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                  />
-                </svg>
-              } @else {
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="3"
-                  stroke="currentColor"
-                  class="w-3.5 h-3.5 sm:w-4 sm:h-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                  />
-                </svg>
-              }
+    <div class="skill-filters" role="group" aria-label="Filter skills">
+      @for (category of categories; track category) {
+        <button
+          (click)="selectedCategory.set(category)"
+          [class.selected]="selectedCategory() === category"
+          [attr.aria-pressed]="selectedCategory() === category"
+        >
+          {{ category }}
+        </button>
+      }
+    </div>
+    <div class="skills-grid">
+      @for (tool of filteredTools; track tool.name; let i = $index) {
+        <article class="tool-card" appReveal [revealDelay]="(i % 4) * 65">
+          <div class="tool-logo">
+            <img [src]="'logos/' + tool.icon + '.svg'" alt="" width="34" height="34" />
+          </div>
+          <div>
+            <h3>{{ tool.name }}</h3>
+            <p>{{ tool.note }}</p>
+          </div>
+        </article>
+      }
+    </div>
+    <app-extended-toolkit appReveal />
+  </section>
+  <section id="ai" class="section" aria-label="AI-assisted automation">
+    <app-ai-expertise appReveal />
+  </section>
+  <section id="projects" class="section">
+    <div class="section-heading heading-row" appReveal>
+      <div>
+        <div class="eyebrow">05 / SELECTED WORK</div>
+        <h2>Automation in practice.</h2>
+      </div>
+      <p>Selected examples from my professional work in banking and financial services.</p>
+    </div>
+    <div class="projects-grid">
+      @for (project of projects; track project.name; let i = $index) {
+        <article class="project-card" appReveal [revealDelay]="i * 100">
+          <div class="project-visual" [class.api-visual]="i === 1">
+            <div class="visual-label">
+              <span>{{ i === 0 ? 'WEB AUTOMATION' : 'API & DATA VALIDATION' }}</span
+              ><span>0{{ i + 1 }} ↗</span>
             </div>
-
-            <!-- Main timeline card container -->
-            <div
-              class="min-w-0 rounded-xl glass border p-4 sm:p-5 md:p-6 transition-all duration-300 cursor-pointer"
-              (click)="toggleExperience(idx)"
-              [ngClass]="
-                job.expanded
-                  ? 'border-primary bg-primary/5 shadow-lg shadow-blue-500/5'
-                  : 'border-white/5 hover:border-blue-500/20'
-              "
-            >
-              <div
-                class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 select-none"
-              >
+            @if (i === 0) {
+              <div class="flow-diagram">
+                <div>Business workflows</div>
+                <span>↓</span>
+                <div class="flow-pair">
+                  <span>Python</span><span>Selenium</span><span>Playwright</span><span>Pytest</span>
+                </div>
+                <span>↓</span>
+                <div class="flow-result">✓ Repeatable regression coverage</div>
+              </div>
+            } @else {
+              <div class="message-diagram">
+                <span class="xml-bracket">&lt;/&gt;</span>
                 <div>
-                  <h3
-                    class="break-words text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors duration-300"
-                  >
-                    {{ job.role }}
-                  </h3>
-                  <p class="break-words text-xs sm:text-sm font-semibold text-accent font-mono">
-                    {{ job.company }}
-                  </p>
-                </div>
-                <span
-                  class="inline-block px-3 py-1 rounded-full text-xs font-mono font-medium glass border border-blue-500/10 text-primary w-fit"
-                >
-                  {{ job.duration }}
-                </span>
-              </div>
-
-              <!-- Expanded details pane -->
-              <div
-                class="transition-all duration-500 ease-in-out overflow-hidden"
-                [ngClass]="job.expanded ? 'max-h-[900px] opacity-100 mt-4' : 'max-h-0 opacity-0'"
-              >
-                <ul
-                  class="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300 list-disc list-inside leading-relaxed font-sans"
-                >
-                  @for (responsibility of job.responsibilities; track responsibility) {
-                    <li>{{ responsibility }}</li>
-                  }
-                </ul>
-
-                <!-- Tech stack used in this role -->
-                <div class="mt-4 pt-4 border-t border-white/5 flex flex-wrap gap-2 select-none">
-                  @for (tech of job.techStack; track tech) {
-                    <span class="contents" [ngClass]="getExperienceSkillCategoryClass(tech)">
-                      <span
-                        class="px-2 py-1 rounded-full text-[10px] sm:text-xs font-mono font-semibold border skill-card-skill"
-                      >
-                        {{ tech }}
-                      </span>
-                    </span>
-                  }
+                  <span>MESSAGES → APIs → DATA</span><strong>Check every layer.</strong>
+                  <div class="mini-tags">
+                    <span>API</span><span>Schema</span><span>Database</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            }
           </div>
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== SKILLS SECTION ==================== -->
-  <section id="skills" class="scroll-mt-20 sm:scroll-mt-24 space-y-6">
-    <div class="text-center lg:text-left">
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary"></span>Skills<span class="text-primary">/</span>
-      </h2>
-      <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
-    </div>
-
-    <!-- Skills Display Area - Squeezed compact layout -->
-    <div class="rounded-xl glass border border-white/5 overflow-hidden shadow-xl p-4 sm:p-6">
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 select-none font-sans"
-      >
-        @for (
-          category of [
-            'Languages',
-            'Automation',
-            'API',
-            'Frameworks',
-            'CI_CD',
-            'Databases',
-            'Test Management',
-            'Testing Types',
-            'Reports',
-            'Banking Domain',
-          ];
-          track category;
-          let i = $index
-        ) {
-          <div
-            [ngClass]="{
-              'skill-card': true,
-              'skill-card-0': i === 0,
-              'skill-card-1': i === 1,
-              'skill-card-2': i === 2,
-              'skill-card-3': i === 3,
-              'skill-card-4': i === 4,
-              'skill-card-5': i === 5,
-              'skill-card-6': i === 6,
-              'skill-card-7': i === 7,
-              'skill-card-8': i === 8,
-              'skill-card-9': i === 9,
-            }"
-            class="min-w-0 rounded-lg border p-3.5 hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between space-y-2.5"
-          >
-            <div>
-              <h3
-                class="text-xs font-mono font-bold border-b pb-1.5 mb-2 select-none uppercase tracking-wider skill-card-title"
-              >
-                {{
-                  category === 'CI_CD'
-                    ? 'CI / CD'
-                    : category === 'Test Management'
-                      ? 'Mgmt'
-                      : category === 'Testing Types'
-                        ? 'Tests'
-                        : category
-                }}
-              </h3>
-              <div class="flex flex-wrap gap-1.5">
-                @for (skill of skillsData[category]; track skill) {
-                  <span
-                    class="min-w-0 break-words px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-mono border skill-card-skill"
-                  >
-                    {{ skill }}
-                  </span>
-                }
-              </div>
-            </div>
-          </div>
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== PROJECTS SECTION ==================== -->
-  <section id="projects" class="scroll-mt-20 sm:scroll-mt-24 space-y-6 sm:space-y-8">
-    <div class="text-center lg:text-left">
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary"></span>Projects<span class="text-primary">/</span>
-      </h2>
-      <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
-    </div>
-
-    <!-- Projects Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
-      @for (project of projects(); track project.name) {
-        <div
-          class="min-w-0 rounded-xl glass border border-white/5 overflow-hidden flex flex-col justify-between hover:border-primary/20 hover:scale-[1.01] hover:shadow-[0_10px_25px_rgba(59,130,246,0.15)] transition-all duration-300"
-        >
-          <!-- Visual Decorative Mockup Card -->
-          <div
-            class="h-44 bg-gradient-to-br from-slate-900 to-slate-950 border-b border-white/5 relative flex flex-col justify-between p-4 font-mono select-none"
-          >
-            <div class="flex items-center justify-between text-[10px] text-slate-500">
-              <span>Automation Health</span>
-              <span class="text-accent">ACTIVE</span>
-            </div>
-
-            <!-- QA dashboard snapshot -->
-            <div
-              class="text-[10px] text-slate-400 space-y-1 mt-2 flex-grow overflow-hidden select-none"
-            >
-              <div class="text-primary font-bold">Release confidence</div>
-              <div class="text-slate-600">48 scenarios monitored</div>
-              <div class="text-slate-500">Fast feedback across critical journeys</div>
-              <div class="flex min-w-0 gap-2">
-                <span class="text-accent">PASS</span>
-                <span class="min-w-0 truncate text-slate-400">Authentication journey</span>
-              </div>
-              <div class="flex min-w-0 gap-2">
-                <span class="text-accent">PASS</span>
-                <span class="min-w-0 truncate text-slate-400">API contract coverage</span>
-              </div>
-            </div>
-
-            <!-- Tech badges overlay - colors match Skills tags -->
-            <div class="flex flex-wrap gap-1.5 mt-2">
-              @for (tech of project.techStack.slice(0, 2); track tech) {
-                <span class="contents" [ngClass]="getExperienceSkillCategoryClass(tech)">
-                  <span
-                    class="px-2 py-0.5 rounded-full text-[9px] font-mono font-semibold border skill-card-skill"
-                  >
-                    {{ tech }}
-                  </span>
-                </span>
+          <div class="project-content">
+            <span class="tiny-label">PROFESSIONAL WORK HIGHLIGHT</span>
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+            <div class="tags">
+              @for (tech of project.techStack; track tech) {
+                <span>{{ tech }}</span>
               }
             </div>
+            <details>
+              <summary>How I approached it <span>↗</span></summary>
+              <ul>
+                @for (feature of project.features; track feature) {
+                  <li>{{ feature }}</li>
+                }
+              </ul>
+            </details>
           </div>
-
-          <!-- Card Description and data -->
-          <div class="p-6 flex-grow flex flex-col justify-between space-y-6">
-            <div class="space-y-3 font-sans">
-              <h3
-                class="text-base sm:text-lg font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary"
-              >
-                {{ project.name }}
-              </h3>
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                {{ project.description }}
-              </p>
-            </div>
-
-            <!-- Code/Logic Expanders -->
-            <div class="space-y-3 font-sans text-xs">
-              <!-- Features -->
-              <details class="group border-b border-white/5 pb-2 cursor-pointer select-none">
-                <summary
-                  class="font-mono text-primary font-semibold hover:underline flex items-center justify-between"
-                >
-                  Core Features
-                  <span class="transition-transform group-open:rotate-180">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="2.5"
-                      stroke="currentColor"
-                      class="w-3.5 h-3.5"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                      />
-                    </svg>
-                  </span>
-                </summary>
-                <ul
-                  class="list-disc pl-4 mt-2 space-y-1 text-slate-400 leading-relaxed select-text"
-                >
-                  @for (feat of project.features; track feat) {
-                    <li>{{ feat }}</li>
-                  }
-                </ul>
-              </details>
-
-              <!-- Challenges -->
-              <details class="group border-b border-white/5 pb-2 cursor-pointer select-none">
-                <summary
-                  class="font-mono text-accent font-semibold hover:underline flex items-center justify-between"
-                >
-                  Challenges Solved
-                  <span class="transition-transform group-open:rotate-180">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="2.5"
-                      stroke="currentColor"
-                      class="w-3.5 h-3.5"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                      />
-                    </svg>
-                  </span>
-                </summary>
-                <p class="text-slate-400 leading-relaxed mt-2 select-text">
-                  {{ project.challenges }}
-                </p>
-              </details>
-
-              <!-- Lessons -->
-              <details class="group cursor-pointer select-none">
-                <summary
-                  class="font-mono text-amber-500 font-semibold hover:underline flex items-center justify-between"
-                >
-                  Lessons Learned
-                  <span class="transition-transform group-open:rotate-180">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke-width="2.5"
-                      stroke="currentColor"
-                      class="w-3.5 h-3.5"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                      />
-                    </svg>
-                  </span>
-                </summary>
-                <p class="text-slate-400 leading-relaxed mt-2 select-text">
-                  {{ project.lessons }}
-                </p>
-              </details>
-            </div>
-
-            <!-- Bottom Action links -->
-            <div
-              class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-4 border-t border-white/5 font-sans"
-            >
-              <a
-                [href]="project.github"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 py-2.5 px-3 rounded-full glass border border-blue-500/10 text-primary text-center font-medium text-xs hover:bg-primary hover:text-white hover:border-primary transition-all duration-300"
-              >
-                Code Repository
-              </a>
-              <a
-                [href]="project.demo"
-                target="_blank"
-                rel="noopener"
-                class="flex-1 py-2.5 px-3 rounded-full bg-primary hover:bg-blue-600 text-white text-center font-medium text-xs shadow-md shadow-blue-500/15 transition-all duration-300"
-              >
-                Live Demo
-              </a>
-            </div>
-          </div>
-        </div>
+        </article>
       }
     </div>
   </section>
-
-  <!-- ==================== CERTIFICATIONS SECTION ==================== -->
-  <section id="certifications" class="scroll-mt-20 sm:scroll-mt-24 space-y-6 sm:space-y-8">
-    <div class="text-center lg:text-left">
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary"></span>Certifications<span class="text-primary">/</span>
-      </h2>
-      <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
+  <section id="github" class="section" aria-label="GitHub contributions">
+    <app-github-contributions appReveal />
+  </section>
+  <section id="education" class="section" aria-labelledby="education-title">
+    <div class="section-heading" appReveal>
+      <div class="eyebrow">07 / EDUCATION</div>
+      <h2 id="education-title">A foundation for engineering.</h2>
     </div>
-
-    <!-- Collectible Certification Grids -->
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 font-sans"
-    >
-      @for (cert of certifications(); track cert.name) {
-        <div
-          class="rounded-xl glass border border-white/5 p-5 hover:border-primary/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] transition-all duration-500 relative overflow-hidden group select-none flex flex-col justify-between gap-4"
-        >
-          <!-- Absolute shining effect overlay -->
-          <div
-            class="absolute -top-1/2 -left-1/2 w-48 h-48 bg-primary/5 blur-2xl group-hover:bg-primary/10 transition-colors duration-500"
-          ></div>
-
-          <div class="relative z-10 flex flex-col items-center text-center space-y-3">
-            <span
-              class="text-4xl filter drop-shadow-[0_0_8px_#3B82F6] transition-transform duration-300 group-hover:scale-110"
-            >
-              {{ cert.icon }}
-            </span>
-            <div class="space-y-1">
-              <h3
-                class="text-sm font-bold text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors duration-300"
+    <article class="education-card" appReveal>
+      <span class="line-icon">↗</span><span class="tiny-label">BACHELOR’S DEGREE</span>
+      <h3>{{ education.degree }}</h3>
+      <p>{{ education.institution }}</p>
+      <div class="education-footer">
+        <span>{{ education.duration }}</span
+        ><strong>{{ education.grade }}</strong>
+      </div>
+    </article>
+  </section>
+  <section id="certifications" class="section" aria-labelledby="certifications-title">
+    <div class="section-heading" appReveal>
+      <div class="eyebrow">08 / CERTIFICATIONS</div>
+      <h2 id="certifications-title">Learning that supports the work.</h2>
+    </div>
+    <div class="certificates certificate-grid">
+      @for (cert of certifications; track cert.name; let first = $first) {
+        <article class="certificate" appReveal [revealDelay]="first ? 0 : 100">
+          <div class="cert-logo">
+            <img
+              [src]="first ? 'logos/githubcopilot.svg' : 'logos/selenium.svg'"
+              alt=""
+              width="32"
+              height="32"
+            />
+          </div>
+          <div>
+            <span class="tiny-label">{{ cert.issuer }} · {{ cert.date }}</span>
+            <h3>{{ cert.name }}</h3>
+            @if (first) {
+              <a
+                class="credential-link"
+                href="https://learn.microsoft.com/api/credentials/share/en-us/MohammadShariqSaifi-3641/3AD3811114FAA2F7?sharingId=46229A335A377EC4"
+                target="_blank"
+                rel="noopener noreferrer"
+                >View credential ↗</a
               >
-                {{ cert.name }}
-              </h3>
-              <p class="text-xs text-slate-400 font-semibold">{{ cert.issuer }}</p>
-            </div>
+            }
           </div>
-
-          <div
-            class="relative z-10 pt-3 border-t border-white/5 flex items-center justify-between gap-3 text-[10px] font-mono text-slate-500"
-          >
-            <span class="min-w-0 truncate">ID: {{ cert.id }}</span>
-            <span class="shrink-0 text-accent font-semibold">{{ cert.date }}</span>
-          </div>
-        </div>
+          <span class="certificate-check">✓</span>
+        </article>
       }
     </div>
   </section>
-
-  <!-- ==================== CONTACT SECTION ==================== -->
-  <section id="contact" class="scroll-mt-20 sm:scroll-mt-24 space-y-6 sm:space-y-8 font-sans">
-    <div class="text-center lg:text-left">
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight font-mono">
-        <span class="text-primary"></span>Contact<span class="text-primary">/</span>
-      </h2>
-      <div class="h-1 w-20 bg-primary rounded-full mt-2 mx-auto lg:mx-0"></div>
+  <section id="contact" class="contact-section" appReveal>
+    <div class="eyebrow"><span class="status-dot"></span> LET’S CONNECT</div>
+    <h2>Let’s build software<br />people can <span class="serif-word">trust.</span></h2>
+    <p>
+      Looking for an SDET who can understand your product and strengthen its testing?<br />
+      I’m open to test automation and quality engineering roles across industries. Let’s talk about
+      your team and the challenges ahead.
+    </p>
+    <div class="contact-actions">
+      <a class="button primary" [href]="'mailto:' + personal.email">Let’s talk <span>↗</span></a
+      ><button class="button secondary" (click)="copyEmailToClipboard()">
+        Copy email <span>⧉</span>
+      </button>
     </div>
-
-    <!-- Squeezed email dashboard card -->
-    <div class="max-w-2xl mx-auto w-full text-center space-y-6">
-      <p
-        class="text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-md mx-auto leading-relaxed"
-      >
-        Have an automation challenge, testing pipeline optimization role, or enterprise SDET
-        contract? Let's connect.
-      </p>
-
-      <!-- Clickable/Copyable Email Card -->
-      <div
-        (click)="
-          workspaceService.showSnackbar('Email address copied to clipboard!');
-          copyEmailToClipboard()
-        "
-        class="inline-flex w-full max-w-full sm:max-w-md md:max-w-lg items-center gap-3 sm:gap-4 px-3 sm:px-6 py-3.5 sm:py-4 rounded-full glass border border-blue-500/20 hover:border-primary/40 hover:bg-slate-900/10 cursor-pointer shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 group"
-      >
-        <div
-          class="w-10 h-10 shrink-0 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20 text-primary group-hover:scale-105 transition-transform duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            class="w-5 h-5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-            />
-          </svg>
-        </div>
-
-        <div class="min-w-0 flex-1 text-left font-mono">
-          <p class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Email Address</p>
-          <p
-            class="break-all text-sm sm:text-base text-slate-900 dark:text-slate-100 font-semibold group-hover:text-primary transition-colors duration-300"
-          >
-            {{ personal.email }}
-          </p>
-        </div>
-
-        <div
-          class="w-8 h-8 shrink-0 rounded-full bg-slate-950/20 border border-white/5 flex items-center justify-center text-slate-400 group-hover:text-primary transition-colors duration-300"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            class="w-4 h-4"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H5.25m11.9-3.664A2.251 2.251 0 0 0 15 2.25h-1.5a2.25 2.25 0 0 0-2.25 2.25v1.5a2.25 2.25 0 0 0 2.25 2.25H15a2.25 2.25 0 0 0 2.25-2.25V3.75a2.251 2.251 0 0 0-.25-1.086z"
-            />
-          </svg>
-        </div>
-      </div>
-
-      <div class="pt-4">
-        <a
-          [href]="'mailto:' + personal.email"
-          class="inline-flex items-center space-x-1.5 text-xs font-mono text-primary hover:text-blue-600 transition-colors duration-300"
-        >
-          <span>Open Email Client</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="2"
-            stroke="currentColor"
-            class="w-3.5 h-3.5"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
-            />
-          </svg>
-        </a>
-      </div>
-    </div>
+    <a class="email-link" [href]="'mailto:' + personal.email">{{ personal.email }}</a>
   </section>
+  <footer>
+    <a class="footer-name" href="#home">shariqsaifi<span class="mint">.</span></a
+    ><span>© {{ year }} Shariq Saifi · SDET & Quality Engineering.</span>
+    <div>
+      <a [href]="personal.github" target="_blank" rel="noopener noreferrer">GitHub ↗</a
+      ><a [href]="personal.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+    </div>
+  </footer>
 </div>

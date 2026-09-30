@@ -1,0 +1,106 @@
+<section class="quality-lab" aria-labelledby="quality-lab-title">
+  <div class="lab-heading">
+    <div>
+      <div class="eyebrow"><span class="status-dot"></span> MY AUTOMATION WORKFLOW</div>
+      <h2 id="quality-lab-title">From requirements to <span>reliable tests.</span></h2>
+    </div>
+    <p>
+      Explore how I approach regression automation, API validation, and release testing with the
+      tools in my portfolio.
+    </p>
+  </div>
+
+  <div class="lab-shell">
+    <div class="lab-toolbar">
+      <div class="lab-brand"><span aria-hidden="true">⌘</span> THE QUALITY LAB</div>
+      <span class="example-label">Methods & workflow examples</span>
+    </div>
+    <div class="scenario-picker" role="group" aria-label="Choose an area of testing expertise">
+      @for (item of scenarios; track item.name; let i = $index) {
+        <button
+          type="button"
+          [attr.aria-pressed]="selectedScenario() === i"
+          (click)="selectedScenario.set(i)"
+        >
+          <span class="scenario-number" aria-hidden="true">0{{ i + 1 }}</span
+          >{{ item.name }}
+          <span class="scenario-arrow" aria-hidden="true">↗</span>
+        </button>
+      }
+    </div>
+
+    <div class="lab-body">
+      <div class="system-map">
+        <div class="map-caption">
+          <span class="tiny-label">DESIGN. AUTOMATE. INVESTIGATE.</span
+          ><span aria-hidden="true">↙</span>
+        </div>
+        <p class="scenario-context">{{ scenario().context }}</p>
+        <div class="layer-list" role="group" aria-label="Explore a stage of the testing workflow">
+          @for (layer of layers; track layer.id; let i = $index) {
+            <button
+              type="button"
+              class="layer"
+              [attr.aria-pressed]="selectedLayer() === layer.id"
+              (click)="selectedLayer.set(layer.id)"
+            >
+              <span class="layer-number">{{ layer.number }}</span>
+              <span class="layer-copy"
+                ><strong>{{ layer.name }}</strong
+                ><small>{{ scenario().flow[i] }}</small></span
+              >
+              <span class="layer-indicator" aria-hidden="true">↗</span>
+            </button>
+            @if (i < layers.length - 1) {
+              <div class="connector" aria-hidden="true"><span></span></div>
+            }
+          }
+        </div>
+        <div class="map-footnote">
+          <span aria-hidden="true">◎</span> Select a stage to explore my approach.
+        </div>
+      </div>
+
+      <div class="test-lens" [appMotionChange]="selectedScenario() + '-' + selectedLayer()" aria-live="polite" aria-atomic="true">
+        <div class="lens-label">
+          <span class="tiny-label">HOW I APPROACH THE WORK</span
+          ><span class="lens-count">3 focus areas</span>
+        </div>
+        <h3>{{ lens().title }}</h3>
+        <ul class="check-list">
+          @for (check of lens().checks; track check) {
+            <li><span aria-hidden="true">↳</span>{{ check }}</li>
+          }
+        </ul>
+        <div class="example-code">
+          <div><span>WORKFLOW EXAMPLE</span><span aria-hidden="true">&lt;/&gt;</span></div>
+          <pre>{{ lens().sample }}</pre>
+        </div>
+        <button
+          type="button"
+          class="edge-toggle"
+          [attr.aria-expanded]="showEdge()"
+          aria-controls="quality-edge-case"
+          (click)="showEdge.set(!showEdge())"
+        >
+          <span
+            ><span aria-hidden="true">✳</span>
+            {{ showEdge() ? 'Hide the failure pattern' : 'A failure pattern to watch for' }}</span
+          >
+          <span aria-hidden="true">{{ showEdge() ? '−' : '+' }}</span>
+        </button>
+        <div id="quality-edge-case" class="edge-case" [hidden]="!showEdge()">
+          <span class="tiny-label">WHAT DESERVES A CLOSER LOOK</span>
+          <p>{{ lens().edge }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="lab-footer">
+      <p>
+        <span aria-hidden="true">↗</span> Clear coverage. Maintainable tests. Evidence for the next
+        decision.
+      </p>
+      <a href="#projects">See my work <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>

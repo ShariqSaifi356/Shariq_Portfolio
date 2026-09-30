@@ -1,190 +1,89 @@
-import { Component, HostListener, inject, signal, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { GithubContributions } from '../../shared/components/github-contributions/github-contributions';
+import { QualityLab } from '../../shared/components/quality-lab/quality-lab';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { WorkspaceService } from '../../shared/services/workspace.service';
-import { CustomTerminal } from '../../shared/components/custom-terminal/custom-terminal';
+import { AutomationArt } from '../../shared/components/automation-art/automation-art';
+import { ExtendedToolkit } from '../../shared/components/extended-toolkit/extended-toolkit';
+import { AiExpertise } from '../../shared/components/ai-expertise/ai-expertise';
 import { PORTFOLIO_DATA } from '../../shared/data/portfolio-data';
-
-interface JobExperience {
-  company: string;
-  role: string;
-  duration: string;
-  responsibilities: string[];
-  techStack: string[];
-  expanded: boolean;
-  javaClass: string;
-}
-
-interface Project {
-  name: string;
-  description: string;
-  techStack: string[];
-  github: string;
-  demo: string;
-  features: string[];
-  challenges: string;
-  lessons: string;
-}
-
-interface Certification {
-  name: string;
-  issuer: string;
-  date: string;
-  id: string;
-  icon: string;
-}
-
-type SkillCategory =
-  | 'Languages'
-  | 'Automation'
-  | 'API'
-  | 'Frameworks'
-  | 'CI_CD'
-  | 'Databases'
-  | 'Test Management'
-  | 'Testing Types'
-  | 'Reports'
-  | 'Banking Domain';
-
+import { Reveal } from '../../shared/directives/reveal';
+import { CountUp } from '../../shared/directives/count-up';
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, FormsModule, CustomTerminal],
+  imports: [AutomationArt, ExtendedToolkit, AiExpertise, GithubContributions, QualityLab, Reveal, CountUp],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home implements OnInit {
+export class Home {
   readonly workspaceService = inject(WorkspaceService);
-
-  // Data imports from central JSON configuration
   readonly personal = PORTFOLIO_DATA.personal;
   readonly education = PORTFOLIO_DATA.education;
-  readonly skillsData: Record<string, string[]> = PORTFOLIO_DATA.skills;
-
-  private readonly skillCategories: SkillCategory[] = [
-    'Languages',
-    'Automation',
-    'API',
-    'Frameworks',
-    'CI_CD',
-    'Databases',
-    'Test Management',
-    'Testing Types',
-    'Reports',
-    'Banking Domain',
+  readonly experiences = PORTFOLIO_DATA.experience;
+  readonly projects = PORTFOLIO_DATA.projects;
+  readonly certifications = PORTFOLIO_DATA.certifications;
+  readonly year = new Date().getFullYear();
+  readonly selectedCategory = signal('All tools');
+  readonly categories = ['All tools', 'Languages', 'Automation', 'API & data', 'DevOps'];
+  readonly tools = [
+    { name: 'Python', icon: 'python', category: 'Languages', note: 'Primary language' },
+    { name: 'Java', icon: 'java', category: 'Languages', note: 'Programming' },
+    { name: 'Selenium', icon: 'selenium', category: 'Automation', note: 'Web automation' },
+    { name: 'Playwright', icon: 'playwright', category: 'Automation', note: 'Browser testing' },
+    { name: 'Pytest', icon: 'pytest', category: 'Automation', note: 'Test framework' },
+    {
+      name: 'Robot Framework',
+      icon: 'robotframework',
+      category: 'Automation',
+      note: 'Test framework',
+    },
+    { name: 'Cucumber', icon: 'cucumber', category: 'Automation', note: 'Behavior-driven testing' },
+    { name: 'Postman', icon: 'postman', category: 'API & data', note: 'API testing' },
+    {
+      name: 'Oracle SQL Developer',
+      icon: 'sqldeveloper',
+      category: 'API & data',
+      note: 'Database validation',
+    },
+    { name: 'Jenkins', icon: 'jenkins', category: 'DevOps', note: 'Continuous integration' },
+    { name: 'Git', icon: 'git', category: 'DevOps', note: 'Version control' },
+    { name: 'GitHub Actions', icon: 'githubactions', category: 'DevOps', note: 'CI/CD pipelines' },
+    { name: 'Linux', icon: 'linux', category: 'DevOps', note: 'Operating system' },
   ];
-
-  private readonly skillCategoryAliases: Record<string, SkillCategory> = {
-    selenium: 'Automation',
-    'selenium webdriver': 'Automation',
-    requests: 'API',
-    'python requests': 'API',
-    'oracle db': 'Databases',
-    'oracle developer': 'Databases',
-    'oracle sql developer': 'Databases',
-    jira: 'Test Management',
-  };
-
-  // Experience state
-  readonly experiences = signal<JobExperience[]>(
-    PORTFOLIO_DATA.experience.map((exp, idx) => ({
-      ...exp,
-      expanded: idx === 0, // Default first experience expanded
-    })),
-  );
-
-  // Projects state
-  readonly projects = signal<Project[]>(PORTFOLIO_DATA.projects);
-
-  // Certifications
-  readonly certifications = signal<Certification[]>(PORTFOLIO_DATA.certifications);
-
-  ngOnInit(): void {
-    // Register scroll event initially
-    this.onWindowScroll();
+  get filteredTools() {
+    return this.tools.filter(
+      (tool) =>
+        this.selectedCategory() === 'All tools' || tool.category === this.selectedCategory(),
+    );
   }
-
-  @HostListener('window:scroll')
-  onWindowScroll(): void {
-    const sections = [
-      'home',
-      'about',
-      'experience',
-      'skills',
-      'projects',
-      'certifications',
+  @HostListener('window:scroll') onWindowScroll(): void {
+    for (const id of [
       'contact',
-    ];
-    const headerHeight = 100;
-
-    for (const section of sections) {
-      const el = document.getElementById(section);
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= headerHeight + 50 && rect.bottom >= headerHeight) {
-          this.workspaceService.setActiveSection(section);
-          break;
-        }
+      'certifications',
+      'education',
+      'github',
+      'projects',
+      'ai',
+      'skills',
+      'experience',
+      'approach',
+      'about',
+      'home',
+    ]) {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 180) {
+        this.workspaceService.setActiveSection(id);
+        break;
       }
     }
   }
-
-  toggleExperience(index: number): void {
-    this.experiences.update((exps) => {
-      const updated = [...exps];
-      updated[index] = { ...updated[index], expanded: !updated[index].expanded };
-      return updated;
-    });
-  }
-
-  scrollToSection(sectionId: string): void {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      const offsetPosition = elementPosition - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
-
-      this.workspaceService.setActiveSection(sectionId);
+  async copyEmailToClipboard(): Promise<void> {
+    try {
+      await navigator.clipboard.writeText(this.personal.email);
+      this.workspaceService.showSnackbar('Email address copied.');
+    } catch {
+      this.workspaceService.showSnackbar(
+        'Unable to copy. Please select the email address or use the email link.',
+      );
     }
-  }
-
-  getExperienceSkillCategoryClass(skill: string): string {
-    const category = this.getSkillCategory(skill);
-    const categoryIndex = this.skillCategories.indexOf(category);
-
-    return `skill-card-${categoryIndex >= 0 ? categoryIndex : 0}`;
-  }
-
-  copyEmailToClipboard(): void {
-    navigator.clipboard.writeText(this.personal.email);
-  }
-
-  private getSkillCategory(skill: string): SkillCategory {
-    const normalizedSkill = this.normalizeSkillName(skill);
-    const aliasedCategory = this.skillCategoryAliases[normalizedSkill];
-
-    if (aliasedCategory) {
-      return aliasedCategory;
-    }
-
-    const matchedCategory = this.skillCategories.find((category) =>
-      this.skillsData[category].some(
-        (categorySkill) => this.normalizeSkillName(categorySkill) === normalizedSkill,
-      ),
-    );
-
-    return matchedCategory ?? 'Automation';
-  }
-
-  private normalizeSkillName(skill: string): string {
-    return skill
-      .toLowerCase()
-      .replace(/&/g, 'and')
-      .replace(/[^a-z0-9]+/g, ' ')
-      .trim();
   }
 }

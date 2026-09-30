@@ -1,0 +1,4 @@
+/* Contain the shaking page without introducing horizontal page scrolling. */
+main {
+  overflow-x: clip;
+}
